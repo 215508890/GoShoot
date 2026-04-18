@@ -3,37 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>爆旋陀螺 · 天馬戰榜 | 自訂頭像及區域</title>
+    <title>爆旋陀螺 · 天馬戰榜 | 登入系統</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(145deg, #f0f4fc 0%, #e6edf6 100%);
-            font-family: system-ui, 'Segoe UI', 'Roboto', -apple-system, sans-serif;
+            font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
             line-height: 1.4;
             color: #1a2c3e;
-            padding: 0;
         }
-
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.06"><path fill="none" stroke="%232c6e9e" stroke-width="1.5" d="M100 20 L120 40 L100 60 L80 40 Z M100 80 L130 110 L100 140 L70 110 Z M100 150 L115 170 L100 190 L85 170 Z" /><circle cx="100" cy="100" r="18" stroke="%232c6e9e" fill="none" stroke-width="1"/></svg>');
             background-repeat: repeat;
             background-size: 48px;
             pointer-events: none;
             z-index: 0;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -41,7 +31,6 @@
             position: relative;
             z-index: 2;
         }
-
         /* 頂欄 */
         .navbar {
             display: flex;
@@ -53,7 +42,6 @@
             border-bottom: 2px solid rgba(44, 110, 158, 0.3);
             margin-bottom: 20px;
         }
-
         .logo-area h1 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -65,18 +53,7 @@
             align-items: center;
             gap: 8px;
         }
-
-        .logo-area h1 i {
-            color: #2c6e9e;
-            font-size: 1.4rem;
-        }
-
-        .logo-area p {
-            font-size: 0.7rem;
-            color: #4a6f8f;
-            margin-top: 2px;
-        }
-
+        .logo-area p { font-size: 0.7rem; color: #4a6f8f; margin-top: 2px; }
         .menu-btn {
             background: rgba(255,255,255,0.8);
             border: 1px solid #c0d4e8;
@@ -87,13 +64,7 @@
             gap: 4px;
             cursor: pointer;
         }
-        .menu-btn span {
-            width: 22px;
-            height: 2px;
-            background: #2c6280;
-            display: block;
-        }
-
+        .menu-btn span { width: 22px; height: 2px; background: #2c6280; display: block; }
         /* 側邊選單 */
         .side-menu {
             position: fixed;
@@ -127,11 +98,7 @@
             font-size: 1.6rem;
             overflow: hidden;
         }
-        .user-icon-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .user-icon-large img { width: 100%; height: 100%; object-fit: cover; }
         .menu-items { list-style: none; padding: 12px 0; }
         .menu-items li {
             padding: 12px 20px;
@@ -158,7 +125,6 @@
             z-index: 999;
         }
         .overlay.active { opacity: 1; visibility: visible; }
-
         /* 搜尋列 */
         .search-bar {
             display: flex;
@@ -191,10 +157,8 @@
             color: #5a7e9c;
             margin: -8px 0 12px 8px;
         }
-
-        /* 主內容直排 */
+        /* 主內容 */
         .dashboard { display: flex; flex-direction: column; gap: 20px; }
-
         /* 排名榜 */
         .rank-panel {
             background: #ffffffdd;
@@ -215,11 +179,7 @@
         }
         .panel-header h2 { font-size: 1.2rem; display: flex; align-items: center; gap: 6px; }
         .pagination-info { font-size: 0.7rem; color: #5a7a9a; }
-
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .rank-table {
             min-width: 580px;
             width: 100%;
@@ -260,11 +220,7 @@
             flex-shrink: 0;
             overflow: hidden;
         }
-        .player-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .player-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .player-id {
             font-size: 0.65rem;
             color: #8aa9c2;
@@ -283,7 +239,6 @@
         }
         .score-value { font-weight: 800; font-size: 1rem; color: #1e5a88; }
         .win-loss { font-size: 0.7rem; color: #6f8daa; white-space: nowrap; }
-
         /* 約戰大廳 & 資訊 */
         .battle-lobby, .info-panel {
             background: #ffffffdd;
@@ -363,9 +318,8 @@
             color: #6c8eaa;
             border-top: 1px solid #d4e2f0;
         }
-
-        /* Popup 彈窗 */
-        .popup-overlay {
+        /* Popup 彈窗共用 */
+        .popup-overlay, .modal-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
@@ -379,15 +333,15 @@
             visibility: hidden;
             transition: 0.2s;
         }
-        .popup-overlay.active { opacity: 1; visibility: visible; }
-        .popup-container {
+        .popup-overlay.active, .modal-overlay.active { opacity: 1; visibility: visible; }
+        .popup-container, .modal-container {
             background: white;
             width: 88%;
-            max-width: 380px;
+            max-width: 400px;
             border-radius: 32px;
             overflow: hidden;
         }
-        .popup-header {
+        .popup-header, .modal-header {
             padding: 16px 20px;
             background: #fafdff;
             border-bottom: 2px solid #2c6e9e;
@@ -395,14 +349,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        .popup-close { font-size: 1.6rem; background: none; border: none; cursor: pointer; }
-        .popup-body { padding: 20px; }
-        .popup-avatar {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-        .popup-avatar .avatar-large {
+        .popup-close, .modal-close { font-size: 1.6rem; background: none; border: none; cursor: pointer; }
+        .popup-body, .modal-body { padding: 20px; }
+        .popup-avatar { display: flex; justify-content: center; margin-bottom: 16px; }
+        .avatar-large {
             width: 80px;
             height: 80px;
             background: #eaf3fc;
@@ -412,11 +362,6 @@
             justify-content: center;
             font-size: 2.8rem;
             overflow: hidden;
-        }
-        .popup-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         .info-row {
             display: flex;
@@ -437,67 +382,39 @@
             border-radius: 16px;
             font-size: 0.8rem;
         }
-
-        /* 編輯檔案 Modal (頭像 + 區域) */
-        .profile-modal {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2100;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.2s;
-        }
-        .profile-modal.active { opacity: 1; visibility: visible; }
-        .profile-modal-content {
-            background: white;
-            width: 90%;
-            max-width: 380px;
-            border-radius: 32px;
-            padding: 20px;
-        }
-        .emoji-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
-            margin: 16px 0;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .emoji-option {
-            font-size: 2rem;
-            text-align: center;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 12px;
-            background: #f0f6fc;
-        }
-        .upload-area {
-            margin-top: 16px;
-            text-align: center;
-        }
-        .avatar-preview {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #eef2f8;
-            margin: 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .district-select {
+        /* 登入/註冊表單 */
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.8rem; margin-bottom: 6px; font-weight: 600; }
+        .form-group input, .form-group select {
             width: 100%;
-            padding: 12px;
-            margin-top: 16px;
-            border-radius: 40px;
+            padding: 10px 14px;
             border: 1px solid #cbdde9;
+            border-radius: 40px;
             font-size: 0.9rem;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            background: #eef2f8;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .tab-btn.active {
+            background: #2c6e9e;
+            color: white;
+        }
+        .login-hint {
+            font-size: 0.7rem;
+            color: #6f8eaa;
+            text-align: center;
+            margin-top: 12px;
         }
         .pagination {
             display: flex;
@@ -514,10 +431,7 @@
             font-size: 0.75rem;
             cursor: pointer;
         }
-        .page-btn.active {
-            background: #2c6e9e;
-            color: white;
-        }
+        .page-btn.active { background: #2c6e9e; color: white; }
         button, .join-btn, .page-btn { touch-action: manipulation; }
     </style>
 </head>
@@ -526,12 +440,12 @@
     <div class="navbar">
         <div class="logo-area">
             <h1><i class="fas fa-bezier-curve"></i> 天馬陀螺戰榜</h1>
-            <p>香港街頭對戰 · 自訂頭像及區域</p>
+            <p>香港街頭對戰 · 登入參與對決</p>
         </div>
         <button class="menu-btn" id="menuToggleBtn"><span></span><span></span><span></span></button>
     </div>
 
-    <!-- 側選單 -->
+    <!-- 側邊選單 -->
     <div class="side-menu" id="sideMenu">
         <div class="menu-header">
             <div class="user-icon-large" id="sideUserAvatar">🏆</div>
@@ -540,9 +454,9 @@
         <ul class="menu-items">
             <li><a id="loginMenuItem"><i class="fas fa-sign-in-alt"></i> 登入 / 註冊</a></li>
             <li><a id="myProfileMenuItem"><i class="fas fa-id-card"></i> 我的檔案</a></li>
-            <li><a><i class="fas fa-history"></i> 對戰紀錄</a></li>
-            <li><a><i class="fas fa-qrcode"></i> 掃碼對戰</a></li>
-            <li><a><i class="fas fa-info-circle"></i> 排行榜說明</a></li>
+            <li><a id="battleHistoryMenuItem"><i class="fas fa-history"></i> 對戰紀錄</a></li>
+            <li><a id="scanBattleMenuItem"><i class="fas fa-qrcode"></i> 掃碼對戰</a></li>
+            <li><a id="rulesMenuItem"><i class="fas fa-info-circle"></i> 排行榜說明</a></li>
         </ul>
     </div>
     <div class="overlay" id="overlay"></div>
@@ -556,7 +470,6 @@
     <div id="searchResultInfo" class="search-result-info"></div>
 
     <div class="dashboard">
-        <!-- 排名榜 -->
         <div class="rank-panel">
             <div class="panel-header">
                 <h2><i class="fas fa-trophy"></i> 戰士排行</h2>
@@ -571,14 +484,12 @@
             <div class="pagination" id="paginationControls"></div>
         </div>
 
-        <!-- 約戰大廳 -->
         <div class="battle-lobby">
             <div class="lobby-header"><i class="fas fa-users"></i> 約戰大廳</div>
             <button class="create-room-btn" id="createRoomBtn"><i class="fas fa-plus-circle"></i> 開設陀螺房間</button>
             <div class="room-list" id="roomList">載入中...</div>
         </div>
 
-        <!-- 規則資訊 -->
         <div class="info-panel">
             <div class="info-block">
                 <h3><i class="fas fa-dice-d6"></i> 積分規則</h3>
@@ -611,40 +522,95 @@
     </div>
 </div>
 
-<!-- 編輯檔案 Modal (頭像 + 區域) -->
-<div class="profile-modal" id="profileModal">
-    <div class="profile-modal-content">
-        <h3 style="margin-bottom: 12px;">編輯我的檔案</h3>
-        <div class="emoji-grid" id="emojiGrid"></div>
-        <div class="upload-area">
-            <label for="avatarUpload" style="display: inline-block; background: #2c6e9e; color: white; padding: 8px 16px; border-radius: 40px; cursor: pointer;">上傳圖片</label>
-            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
-            <div class="avatar-preview" id="avatarPreview"></div>
+<!-- 登入/註冊 Modal -->
+<div class="modal-overlay" id="authModal">
+    <div class="modal-container">
+        <div class="modal-header"><h3>帳號</h3><button class="modal-close" id="closeAuthBtn">&times;</button></div>
+        <div class="modal-body">
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="loginTabBtn">登入</button>
+                <button class="tab-btn" id="registerTabBtn">註冊</button>
+            </div>
+            <!-- 登入表單 -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>玩家ID (5位數字)</label>
+                    <input type="text" id="loginId" placeholder="例如 12345" maxlength="5">
+                </div>
+                <button id="doLoginBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">登入</button>
+                <div class="login-hint">未註冊？請切換至「註冊」建立新帳號</div>
+            </div>
+            <!-- 註冊表單 (初始隱藏) -->
+            <div id="registerForm" style="display:none;">
+                <div class="form-group">
+                    <label>戰士名稱</label>
+                    <input type="text" id="regName" placeholder="例如 天馬戰士">
+                </div>
+                <div class="form-group">
+                    <label>活躍區域</label>
+                    <select id="regDistrict">
+                        <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
+                        <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
+                        <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
+                        <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
+                        <option>灣仔區</option><option>中西區</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>頭像 (Emoji 或 上傳)</label>
+                    <div class="emoji-grid" id="regEmojiGrid" style="display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:12px;"></div>
+                    <label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                    <input type="file" id="regAvatarUpload" accept="image/*" style="display:none;">
+                    <div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div>
+                </div>
+                <button id="doRegisterBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">註冊新帳號</button>
+            </div>
         </div>
-        <select id="districtSelect" class="district-select">
-            <option value="觀塘區">觀塘區</option><option value="油尖旺區">油尖旺區</option><option value="深水埗區">深水埗區</option>
-            <option value="九龍城區">九龍城區</option><option value="黃大仙區">黃大仙區</option><option value="葵青區">葵青區</option>
-            <option value="荃灣區">荃灣區</option><option value="屯門區">屯門區</option><option value="元朗區">元朗區</option>
-            <option value="北區">北區</option><option value="大埔區">大埔區</option><option value="沙田區">沙田區</option>
-            <option value="西貢區">西貢區</option><option value="離島區">離島區</option><option value="南區">南區</option>
-            <option value="東區">東區</option><option value="灣仔區">灣仔區</option><option value="中西區">中西區</option>
-        </select>
-        <button id="saveProfileBtn" style="width:100%; margin-top: 16px; padding: 10px; background: #1e5a88; color: white; border: none; border-radius: 40px;">儲存變更</button>
+    </div>
+</div>
+
+<!-- 編輯檔案 Modal (頭像 + 區域) 僅登入後可用 -->
+<div class="modal-overlay" id="profileModal">
+    <div class="modal-container">
+        <div class="modal-header"><h3>編輯我的檔案</h3><button class="modal-close" id="closeProfileBtn">&times;</button></div>
+        <div class="modal-body">
+            <div class="emoji-grid" id="profileEmojiGrid" style="display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:12px;"></div>
+            <div class="upload-area">
+                <label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                <input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;">
+                <div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div>
+            </div>
+            <select id="profileDistrict" class="district-select" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;">
+                <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
+                <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
+                <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
+                <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
+                <option>灣仔區</option><option>中西區</option>
+            </select>
+            <button id="saveProfileBtn" style="width:100%; margin-top:16px; background:#1e5a88; color:white; padding:10px; border:none; border-radius:40px;">儲存變更</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // ---------- 玩家數據 (ID: 5位隨機數字, 新增 district) ----------
-    const STORAGE_PLAYERS = "gyro_rank_avatar_district_v1";
+    // ---------- 全域變數 ----------
+    const STORAGE_PLAYERS = "gyro_players_full";
     const DEFAULT_EMOJIS = ["🦅","🐉","🦁","🐺","🦄","🔥","🦈","⚔️","🛡️","🌟","🌊","⚡","❄️","🌙","🎯"];
     const DISTRICTS = ["觀塘區","油尖旺區","深水埗區","九龍城區","黃大仙區","葵青區","荃灣區","屯門區","元朗區","北區","大埔區","沙田區","西貢區","離島區","南區","東區","灣仔區","中西區"];
     
-    // 生成唯一5位數字ID (10000-99999)
+    let allPlayers = [];
+    let filteredPlayers = [];
+    let currentPage = 1;
+    let itemsPerPage = 15;
+    let currentSearchTerm = "";
+    let currentUser = null;        // 儲存當前登入玩家物件
+    let selectedRegAvatar = "🏆";
+    let selectedProfileAvatar = null;
+    
+    // ---------- 初始化數據 ----------
     function generateUniqueId(existingIds) {
         let id;
-        do {
-            id = Math.floor(10000 + Math.random() * 90000);
-        } while(existingIds.has(id));
+        do { id = Math.floor(10000 + Math.random() * 90000); } while(existingIds.has(id));
         return id.toString();
     }
     
@@ -671,10 +637,6 @@
         return players;
     }
     
-    let allPlayers=[], filteredPlayers=[], currentPage=1, itemsPerPage=15, currentSearchTerm="";
-    let currentUserId = null;      // 當前登入用戶ID (5位數字)
-    let currentUserObj = null;
-    
     function loadData() {
         let stored = localStorage.getItem(STORAGE_PLAYERS);
         if(stored) {
@@ -685,43 +647,92 @@
         }
         allPlayers.sort((a,b)=>b.score-a.score);
         filteredPlayers = [...allPlayers];
-        
-        // 設定當前用戶: 如果沒有登入用戶，取排名第一的玩家作為示範 (或建立一個)
-        if(!currentUserId) {
-            // 嘗試從 localStorage 讀取上次登入 ID
-            let savedUserId = localStorage.getItem("currentUserId");
-            if(savedUserId && allPlayers.find(p=>p.id===savedUserId)) {
-                currentUserId = savedUserId;
-            } else {
-                // 使用第一個玩家作為當前用戶（確保有編輯權限）
-                currentUserId = allPlayers[0]?.id;
-            }
+        // 檢查登入狀態
+        let savedUserId = localStorage.getItem("currentUserId");
+        if(savedUserId) {
+            let user = allPlayers.find(p=>p.id === savedUserId);
+            if(user) currentUser = user;
         }
-        currentUserObj = allPlayers.find(p=>p.id===currentUserId);
-        if(!currentUserObj && allPlayers.length) {
-            currentUserId = allPlayers[0].id;
-            currentUserObj = allPlayers[0];
-        }
-        updateSidebarAvatar();
+        updateSidebarByLogin();
     }
     
-    function saveData() { 
+    function saveData() {
         localStorage.setItem(STORAGE_PLAYERS, JSON.stringify(allPlayers));
-        if(currentUserId) localStorage.setItem("currentUserId", currentUserId);
+        if(currentUser) localStorage.setItem("currentUserId", currentUser.id);
+        else localStorage.removeItem("currentUserId");
     }
     
-    function updateSidebarAvatar() {
+    // 更新側邊欄顯示 (根據登入狀態)
+    function updateSidebarByLogin() {
         let avatarDiv = document.getElementById("sideUserAvatar");
-        if(currentUserObj) {
-            if(currentUserObj.avatar && currentUserObj.avatar.startsWith("data:image")) {
-                avatarDiv.innerHTML = `<img src="${currentUserObj.avatar}" alt="avatar">`;
+        let nameSpan = document.getElementById("sideUserName");
+        let loginMenuItem = document.getElementById("loginMenuItem");
+        if(currentUser) {
+            if(currentUser.avatar && currentUser.avatar.startsWith("data:image")) {
+                avatarDiv.innerHTML = `<img src="${currentUser.avatar}" alt="avatar">`;
             } else {
-                avatarDiv.innerHTML = currentUserObj.avatar || "🏆";
+                avatarDiv.innerHTML = currentUser.avatar || "🏆";
             }
-            document.getElementById("sideUserName").innerHTML = currentUserObj.name;
+            nameSpan.innerHTML = currentUser.name;
+            loginMenuItem.innerHTML = '<i class="fas fa-sign-out-alt"></i> 登出';
+        } else {
+            avatarDiv.innerHTML = "🏆";
+            nameSpan.innerHTML = "訪客";
+            loginMenuItem.innerHTML = '<i class="fas fa-sign-in-alt"></i> 登入 / 註冊';
         }
     }
     
+    // 登出
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem("currentUserId");
+        updateSidebarByLogin();
+        closeAllModals();
+        alert("已登出");
+    }
+    
+    // 註冊新玩家
+    function registerNewPlayer(name, district, avatar) {
+        let usedIds = new Set(allPlayers.map(p=>p.id));
+        let newId = generateUniqueId(usedIds);
+        let newPlayer = {
+            id: newId,
+            name: name.trim(),
+            avatar: avatar,
+            district: district,
+            score: 1000,
+            streak: 0,
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+        allPlayers.push(newPlayer);
+        allPlayers.sort((a,b)=>b.score-a.score);
+        saveData();
+        currentUser = newPlayer;
+        saveData(); // 再次儲存 currentUserId
+        updateSidebarByLogin();
+        renderRanking();
+        closeAuthModal();
+        alert(`註冊成功！你的玩家ID是 ${newId}，請記住此ID用於登入。`);
+    }
+    
+    // 登入驗證
+    function loginWithId(id) {
+        let player = allPlayers.find(p=>p.id === id);
+        if(player) {
+            currentUser = player;
+            saveData();
+            updateSidebarByLogin();
+            closeAuthModal();
+            renderRanking();
+            alert(`歡迎回來，${player.name}`);
+        } else {
+            alert("找不到此玩家ID，請確認或註冊新帳號");
+        }
+    }
+    
+    // ---------- UI 渲染排名 ----------
     function searchPlayers(term) {
         currentSearchTerm = term.trim().toLowerCase();
         if(!currentSearchTerm) filteredPlayers = [...allPlayers];
@@ -736,18 +747,12 @@
     function clearSearch() { document.getElementById("searchInput").value=""; searchPlayers(""); }
     function getGlobalHighestStreak() { return Math.max(...allPlayers.map(p=>p.streak||0),0); }
     
-    // 顯示玩家彈窗 (含區域)
     function showPlayerPopup(p) {
         let rank = allPlayers.findIndex(p2=>p2.id===p.id)+1;
         let total=p.wins+p.losses+p.ties;
         let winRate=total?Math.round(p.wins/total*100):0;
-        let avatarHtml = "";
-        if(p.avatar && p.avatar.startsWith("data:image")) {
-            avatarHtml = `<img src="${p.avatar}" alt="avatar">`;
-        } else {
-            avatarHtml = p.avatar || "🏆";
-        }
-        document.getElementById("popupName").innerHTML = `${p.name}`;
+        let avatarHtml = (p.avatar && p.avatar.startsWith("data:image")) ? `<img src="${p.avatar}">` : (p.avatar || "🏆");
+        document.getElementById("popupName").innerHTML = p.name;
         document.getElementById("popupBody").innerHTML = `
             <div class="popup-avatar"><div class="avatar-large">${avatarHtml}</div></div>
             <div class="info-row"><span>玩家ID</span><span>${p.id}</span></div>
@@ -761,7 +766,6 @@
     }
     function closePopup() { document.getElementById("popupOverlay").classList.remove("active"); }
     
-    // 渲染排名表格
     function renderRanking() {
         let tbody=document.getElementById("rankTbody");
         let start=(currentPage-1)*itemsPerPage, end=start+itemsPerPage;
@@ -770,12 +774,7 @@
         let html="";
         pagePlayers.forEach(p=>{
             let rank=allPlayers.findIndex(p2=>p2.id===p.id)+1;
-            let avatarHtml = "";
-            if(p.avatar && p.avatar.startsWith("data:image")) {
-                avatarHtml = `<img src="${p.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
-            } else {
-                avatarHtml = p.avatar || "🏆";
-            }
+            let avatarHtml = (p.avatar && p.avatar.startsWith("data:image")) ? `<img src="${p.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">` : (p.avatar || "🏆");
             html+=`<tr data-id="${p.id}">
                 <td class="rank-number">${rank}</td>
                 <td class="player-name-cell"><span class="player-avatar">${avatarHtml}</span> ${p.name} <span class="player-id">(${p.id})</span></td>
@@ -804,8 +803,7 @@
         let totalPages=Math.ceil(filteredPlayers.length/itemsPerPage);
         let div=document.getElementById("paginationControls");
         if(totalPages<=1){ div.innerHTML=""; return; }
-        let html=``;
-        html+=`<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1?'disabled':''}>〈 上一頁</button>`;
+        let html=`<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1?'disabled':''}>〈 上一頁</button>`;
         for(let i=Math.max(1,currentPage-2);i<=Math.min(totalPages,currentPage+2);i++)
             html+=`<button class="page-btn ${i===currentPage?'active':''}" data-page="${i}">${i}</button>`;
         html+=`<button class="page-btn" data-page="${currentPage+1}" ${currentPage===totalPages?'disabled':''}>下一頁 〉</button>`;
@@ -816,75 +814,10 @@
         });
     }
     
-    // 編輯檔案 (頭像 + 區域)
-    let selectedAvatar = null;
-    let selectedDistrict = null;
-    function openProfileModal() {
-        const modal = document.getElementById("profileModal");
-        // 填充 emoji 選項
-        const emojiGrid = document.getElementById("emojiGrid");
-        emojiGrid.innerHTML = DEFAULT_EMOJIS.map(emoji => `<div class="emoji-option" data-emoji="${emoji}">${emoji}</div>`).join("");
-        document.querySelectorAll(".emoji-option").forEach(el => {
-            el.addEventListener("click", () => {
-                selectedAvatar = el.getAttribute("data-emoji");
-                document.getElementById("avatarPreview").innerHTML = `<div style="font-size:2rem;">${selectedAvatar}</div>`;
-            });
-        });
-        // 預覽當前頭像
-        const previewDiv = document.getElementById("avatarPreview");
-        if(currentUserObj.avatar && currentUserObj.avatar.startsWith("data:image")) {
-            previewDiv.innerHTML = `<img src="${currentUserObj.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
-        } else {
-            previewDiv.innerHTML = `<div style="font-size:2rem;">${currentUserObj.avatar || "🏆"}</div>`;
-        }
-        selectedAvatar = currentUserObj.avatar;
-        // 設定區域下拉選單
-        const districtSelect = document.getElementById("districtSelect");
-        districtSelect.value = currentUserObj.district || "觀塘區";
-        selectedDistrict = districtSelect.value;
-        districtSelect.onchange = () => { selectedDistrict = districtSelect.value; };
-        
-        // 上傳圖片
-        const uploadInput = document.getElementById("avatarUpload");
-        uploadInput.onchange = (e) => {
-            const file = e.target.files[0];
-            if(file) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    selectedAvatar = ev.target.result;
-                    document.getElementById("avatarPreview").innerHTML = `<img src="${selectedAvatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-        modal.classList.add("active");
-    }
-    function closeProfileModal() { document.getElementById("profileModal").classList.remove("active"); }
-    function saveProfile() {
-        if(currentUserObj) {
-            if(selectedAvatar) currentUserObj.avatar = selectedAvatar;
-            if(selectedDistrict) currentUserObj.district = selectedDistrict;
-            // 更新 allPlayers 中的對應項目
-            const idx = allPlayers.findIndex(p=>p.id===currentUserId);
-            if(idx !== -1) {
-                allPlayers[idx].avatar = currentUserObj.avatar;
-                allPlayers[idx].district = currentUserObj.district;
-            }
-            saveData();
-            updateSidebarAvatar();
-            renderRanking();  // 刷新排名榜顯示
-            closeProfileModal();
-            alert("檔案已更新！");
-        } else {
-            alert("請先登入");
-        }
-    }
-    
-    // 約戰大廳模擬
+    // ---------- 約戰大廳模擬 ----------
     let mockRooms = [
         { id:"rm1", host:"星穹天馬", location:"維園草地", time:"今晚 8:00", players:2, max:4 },
-        { id:"rm2", host:"銀翼龍騎", location:"麥花臣球場", time:"4月20日 15:00", players:1, max:4 },
-        { id:"rm3", host:"雷光飛獅", location:"荔枝角公園", time:"週六 14:30", players:3, max:4 }
+        { id:"rm2", host:"銀翼龍騎", location:"麥花臣球場", time:"4月20日 15:00", players:1, max:4 }
     ];
     function renderRooms() {
         let container=document.getElementById("roomList");
@@ -897,29 +830,148 @@
         });
         container.innerHTML=html;
         document.querySelectorAll(".join-btn").forEach(btn=>{
-            btn.addEventListener("click",(e)=>{ e.stopPropagation(); alert("預約戰鬥功能開發中，將結合掃碼對戰。"); });
+            btn.addEventListener("click",(e)=>{ e.stopPropagation(); if(!currentUser) alert("請先登入才能預約對戰"); else alert("預約戰鬥功能開發中"); });
         });
     }
     
-    // UI 事件
-    document.getElementById("createRoomBtn")?.addEventListener("click",()=>{ alert("開設房間：可設定時間、地點、人數 (敬請期待)"); });
+    // ---------- Modal 控制 ----------
+    let authModal = document.getElementById("authModal");
+    let profileModal = document.getElementById("profileModal");
+    function openAuthModal() { authModal.classList.add("active"); }
+    function closeAuthModal() { authModal.classList.remove("active"); }
+    function openProfileModal() { 
+        if(!currentUser) { alert("請先登入"); return; }
+        // 初始化編輯表單
+        document.getElementById("profileAvatarPreview").innerHTML = (currentUser.avatar && currentUser.avatar.startsWith("data:image")) ? `<img src="${currentUser.avatar}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="font-size:2rem;">${currentUser.avatar || "🏆"}</div>`;
+        document.getElementById("profileDistrict").value = currentUser.district || "觀塘區";
+        selectedProfileAvatar = currentUser.avatar;
+        // 產生 emoji 選項
+        let grid = document.getElementById("profileEmojiGrid");
+        grid.innerHTML = DEFAULT_EMOJIS.map(e => `<div class="emoji-option" data-emoji="${e}">${e}</div>`).join("");
+        document.querySelectorAll("#profileEmojiGrid .emoji-option").forEach(el => {
+            el.addEventListener("click", () => {
+                selectedProfileAvatar = el.getAttribute("data-emoji");
+                document.getElementById("profileAvatarPreview").innerHTML = `<div style="font-size:2rem;">${selectedProfileAvatar}</div>`;
+            });
+        });
+        // 上傳圖片
+        let upload = document.getElementById("profileAvatarUpload");
+        upload.onchange = (e) => {
+            let file = e.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = (ev) => {
+                    selectedProfileAvatar = ev.target.result;
+                    document.getElementById("profileAvatarPreview").innerHTML = `<img src="${selectedProfileAvatar}" style="width:100%; height:100%; object-fit:cover;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        profileModal.classList.add("active");
+    }
+    function closeProfileModal() { profileModal.classList.remove("active"); }
+    function saveProfile() {
+        if(currentUser) {
+            currentUser.avatar = selectedProfileAvatar;
+            currentUser.district = document.getElementById("profileDistrict").value;
+            // 更新 allPlayers
+            let idx = allPlayers.findIndex(p=>p.id===currentUser.id);
+            if(idx !== -1) { allPlayers[idx].avatar = currentUser.avatar; allPlayers[idx].district = currentUser.district; }
+            saveData();
+            updateSidebarByLogin();
+            renderRanking();
+            closeProfileModal();
+            alert("檔案已更新");
+        }
+    }
+    
+    // 註冊表單 Emoji 選擇
+    function setupRegisterEmoji() {
+        let grid = document.getElementById("regEmojiGrid");
+        grid.innerHTML = DEFAULT_EMOJIS.map(e => `<div class="emoji-option" data-emoji="${e}">${e}</div>`).join("");
+        document.querySelectorAll("#regEmojiGrid .emoji-option").forEach(el => {
+            el.addEventListener("click", () => {
+                selectedRegAvatar = el.getAttribute("data-emoji");
+                document.getElementById("regAvatarPreview").innerHTML = `<div style="font-size:1.8rem;">${selectedRegAvatar}</div>`;
+            });
+        });
+        let upload = document.getElementById("regAvatarUpload");
+        upload.onchange = (e) => {
+            let file = e.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = (ev) => {
+                    selectedRegAvatar = ev.target.result;
+                    document.getElementById("regAvatarPreview").innerHTML = `<img src="${selectedRegAvatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+    
+    // 切換登入/註冊 Tab
+    function switchAuthTab(tab) {
+        let loginForm = document.getElementById("loginForm");
+        let regForm = document.getElementById("registerForm");
+        let loginTab = document.getElementById("loginTabBtn");
+        let regTab = document.getElementById("registerTabBtn");
+        if(tab === 'login') {
+            loginForm.style.display = "block";
+            regForm.style.display = "none";
+            loginTab.classList.add("active");
+            regTab.classList.remove("active");
+        } else {
+            loginForm.style.display = "none";
+            regForm.style.display = "block";
+            loginTab.classList.remove("active");
+            regTab.classList.add("active");
+        }
+    }
+    
+    function closeAllModals() {
+        closeAuthModal();
+        closeProfileModal();
+        closePopup();
+    }
+    
+    // ---------- 事件綁定 ----------
+    document.getElementById("createRoomBtn")?.addEventListener("click",()=>{ if(!currentUser) alert("請先登入"); else alert("開設房間功能開發中"); });
     const menuBtn=document.getElementById("menuToggleBtn"), sideMenu=document.getElementById("sideMenu"), overlay=document.getElementById("overlay");
     function openMenu(){ sideMenu.classList.add("open"); overlay.classList.add("active"); }
     function closeMenu(){ sideMenu.classList.remove("open"); overlay.classList.remove("active"); }
     menuBtn.addEventListener("click",openMenu);
     overlay.addEventListener("click",closeMenu);
-    let isLogged=false;
-    document.getElementById("loginMenuItem")?.addEventListener("click",(e)=>{ e.preventDefault(); isLogged=!isLogged; if(isLogged) { alert("登入功能預留，將綁定玩家ID"); } else { alert("已登出"); } closeMenu(); });
+    
+    document.getElementById("loginMenuItem")?.addEventListener("click",(e)=>{ e.preventDefault(); if(currentUser) logout(); else openAuthModal(); closeMenu(); });
     document.getElementById("myProfileMenuItem")?.addEventListener("click",(e)=>{ e.preventDefault(); openProfileModal(); closeMenu(); });
-    document.querySelectorAll(".menu-items li a").forEach(link=>{ if(link.id!=="loginMenuItem" && link.id!=="myProfileMenuItem") link.addEventListener("click",()=>{ alert("此功能開發中"); closeMenu(); }); });
+    document.getElementById("battleHistoryMenuItem")?.addEventListener("click",()=>{ alert("對戰紀錄開發中"); closeMenu(); });
+    document.getElementById("scanBattleMenuItem")?.addEventListener("click",()=>{ if(!currentUser) alert("請先登入"); else alert("掃碼對戰開發中"); closeMenu(); });
+    document.getElementById("rulesMenuItem")?.addEventListener("click",()=>{ alert("排行榜說明：\n- 初始1000分\n- 勝者奪敗者10%積分..."); closeMenu(); });
+    
     document.getElementById("searchBtn")?.addEventListener("click",()=>searchPlayers(document.getElementById("searchInput").value));
     document.getElementById("clearSearchBtn")?.addEventListener("click",clearSearch);
     document.getElementById("popupCloseBtn")?.addEventListener("click",closePopup);
     document.getElementById("popupOverlay")?.addEventListener("click",(e)=>{ if(e.target===document.getElementById("popupOverlay")) closePopup(); });
     document.getElementById("searchInput")?.addEventListener("keypress",(e)=>{ if(e.key==="Enter") searchPlayers(e.target.value); });
-    document.getElementById("saveProfileBtn")?.addEventListener("click",saveProfile);
-    document.getElementById("profileModal")?.addEventListener("click",(e)=>{ if(e.target===document.getElementById("profileModal")) closeProfileModal(); });
     
+    // 登入/註冊 Modal 事件
+    document.getElementById("closeAuthBtn")?.addEventListener("click",closeAuthModal);
+    document.getElementById("authModal")?.addEventListener("click",(e)=>{ if(e.target===document.getElementById("authModal")) closeAuthModal(); });
+    document.getElementById("loginTabBtn")?.addEventListener("click",()=>switchAuthTab('login'));
+    document.getElementById("registerTabBtn")?.addEventListener("click",()=>switchAuthTab('register'));
+    document.getElementById("doLoginBtn")?.addEventListener("click",()=>{ let id=document.getElementById("loginId").value.trim(); if(id) loginWithId(id); else alert("請輸入玩家ID"); });
+    document.getElementById("doRegisterBtn")?.addEventListener("click",()=>{
+        let name = document.getElementById("regName").value.trim();
+        let district = document.getElementById("regDistrict").value;
+        if(!name) { alert("請輸入戰士名稱"); return; }
+        registerNewPlayer(name, district, selectedRegAvatar);
+    });
+    // 編輯檔案 Modal
+    document.getElementById("closeProfileBtn")?.addEventListener("click",closeProfileModal);
+    document.getElementById("profileModal")?.addEventListener("click",(e)=>{ if(e.target===document.getElementById("profileModal")) closeProfileModal(); });
+    document.getElementById("saveProfileBtn")?.addEventListener("click",saveProfile);
+    
+    setupRegisterEmoji();
     loadData(); renderRanking(); renderRooms();
 </script>
 </body>
