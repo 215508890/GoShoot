@@ -2,9 +2,8 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>爆旋陀螺 · 天馬戰榜 | 香港街頭對戰排名</title>
-    <!-- Font Awesome 6 (免費圖示庫，增強視覺) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,14 +14,13 @@
 
         body {
             background: linear-gradient(145deg, #f0f4fc 0%, #e6edf6 100%);
-            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
-            line-height: 1.5;
+            font-family: system-ui, 'Segoe UI', 'Roboto', -apple-system, sans-serif;
+            line-height: 1.4;
             color: #1a2c3e;
-            position: relative;
-            overflow-x: hidden;
+            padding: 0;
         }
 
-        /* 陀螺主題背景紋理 */
+        /* 陀螺主題輕紋理 */
         body::before {
             content: "";
             position: fixed;
@@ -30,378 +28,304 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><path fill="none" stroke="%232c6e9e" stroke-width="1.5" d="M100 20 L120 40 L100 60 L80 40 Z M100 80 L130 110 L100 140 L70 110 Z M100 150 L115 170 L100 190 L85 170 Z" /><circle cx="100" cy="100" r="18" stroke="%232c6e9e" fill="none" stroke-width="1"/><path d="M100 30 L100 70 M70 50 L130 50 M85 85 L115 115" stroke="%232c6e9e" stroke-width="0.8"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.06"><path fill="none" stroke="%232c6e9e" stroke-width="1.5" d="M100 20 L120 40 L100 60 L80 40 Z M100 80 L130 110 L100 140 L70 110 Z M100 150 L115 170 L100 190 L85 170 Z" /><circle cx="100" cy="100" r="18" stroke="%232c6e9e" fill="none" stroke-width="1"/></svg>');
             background-repeat: repeat;
-            background-size: 60px;
+            background-size: 48px;
             pointer-events: none;
             z-index: 0;
         }
 
         .container {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 24px 32px;
+            padding: 16px 12px;
             position: relative;
             z-index: 2;
         }
 
-        /* 頂部導航欄 - 金屬光澤 */
+        /* 頂欄 */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(44, 110, 158, 0.3);
-            margin-bottom: 28px;
             flex-wrap: wrap;
-            gap: 16px;
-            position: relative;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(44, 110, 158, 0.3);
+            margin-bottom: 20px;
         }
 
         .logo-area h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, #1e4a76, #2c7ab8);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
         }
 
         .logo-area h1 i {
-            background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
             color: #2c6e9e;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
         }
 
         .logo-area p {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #4a6f8f;
-            margin-top: 6px;
-            letter-spacing: 1px;
+            margin-top: 2px;
         }
 
-        /* Hamburger Menu 按鈕 */
         .menu-btn {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.8);
             border: 1px solid #c0d4e8;
-            cursor: pointer;
-            padding: 10px 14px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            transition: 0.2s;
+            gap: 4px;
+            cursor: pointer;
         }
-
-        .menu-btn:hover {
-            background: white;
-            border-color: #2c6e9e;
-            box-shadow: 0 2px 8px rgba(44,110,158,0.2);
-        }
-
         .menu-btn span {
-            width: 24px;
+            width: 22px;
             height: 2px;
-            background-color: #2c6280;
+            background: #2c6280;
             display: block;
-            border-radius: 2px;
         }
 
         /* 側邊選單 */
         .side-menu {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 280px;
+            right: -280px;
+            width: 260px;
             height: 100%;
-            background: #ffffffef;
-            backdrop-filter: blur(12px);
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+            transition: right 0.25s ease;
             z-index: 1000;
             border-left: 1px solid #cde3f5;
         }
-
-        .side-menu.open {
-            right: 0;
-        }
-
+        .side-menu.open { right: 0; }
         .menu-header {
-            padding: 24px 20px;
+            padding: 20px 16px;
             border-bottom: 1px solid #e0ecf8;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
         .user-icon-large {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(145deg, #e0edfc, #cddef0);
+            width: 44px;
+            height: 44px;
+            background: #e0edfc;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            color: #2c6e9e;
+            font-size: 1.4rem;
         }
-
-        .menu-items {
-            list-style: none;
-            padding: 16px 0;
-        }
-
+        .menu-items { list-style: none; padding: 12px 0; }
         .menu-items li {
-            padding: 14px 24px;
+            padding: 12px 20px;
             border-bottom: 1px solid #ecf3fa;
         }
-
         .menu-items li a {
             text-decoration: none;
             color: #2c5a7a;
             font-weight: 500;
-            display: block;
-            cursor: pointer;
-            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-
-        .menu-items li a i {
-            width: 28px;
-            margin-right: 12px;
-        }
-
-        .menu-items li:hover {
-            background-color: #e9f2fa;
-        }
-
         .overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.2);
             backdrop-filter: blur(2px);
             opacity: 0;
             visibility: hidden;
             transition: 0.2s;
             z-index: 999;
         }
+        .overlay.active { opacity: 1; visibility: visible; }
 
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* 搜尋欄 */
+        /* 搜尋列 - 手機友善 */
         .search-bar {
-            margin-bottom: 24px;
             display: flex;
-            gap: 12px;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
         }
-
         .search-input {
-            flex: 2;
-            min-width: 200px;
-            padding: 12px 18px;
+            flex: 1;
+            min-width: 0;
+            padding: 12px 16px;
             border: 1px solid #cbdde9;
-            border-radius: 40px;
+            border-radius: 44px;
             font-size: 0.9rem;
             background: white;
-            transition: 0.2s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
-
         .search-input:focus {
             outline: none;
             border-color: #2c6e9e;
-            box-shadow: 0 0 0 3px rgba(44,110,158,0.1);
+            box-shadow: 0 0 0 2px rgba(44,110,158,0.2);
         }
-
         .search-btn, .clear-btn {
-            padding: 12px 24px;
-            border-radius: 40px;
+            padding: 12px 20px;
+            border-radius: 44px;
             font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
+            font-size: 0.85rem;
             border: none;
+            cursor: pointer;
+            white-space: nowrap;
         }
-
         .search-btn {
             background: #2c6e9e;
             color: white;
-            box-shadow: 0 2px 6px rgba(44,110,158,0.3);
         }
-
-        .search-btn:hover {
-            background: #1e5a88;
-            transform: translateY(-1px);
-        }
-
         .clear-btn {
             background: #eef2f8;
             color: #2c5a7a;
             border: 1px solid #cbdde9;
         }
-
-        .clear-btn:hover {
-            background: #e2eaf3;
+        .search-result-info {
+            font-size: 0.7rem;
+            color: #5a7e9c;
+            margin: -8px 0 12px 8px;
         }
 
-        /* 主要內容三欄佈局 (排名榜 + 約戰大廳) */
+        /* 三欄改為直排行 */
         .dashboard {
             display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 20px;
         }
 
         /* 排名榜面板 */
         .rank-panel {
-            flex: 2;
-            min-width: 280px;
             background: #ffffffdd;
             backdrop-filter: blur(4px);
             border-radius: 24px;
             border: 1px solid rgba(44,110,158,0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
-
         .panel-header {
-            padding: 18px 24px;
+            padding: 14px 16px;
             background: linear-gradient(90deg, #fafdff, #f0f6fe);
             border-bottom: 2px solid #2c6e9e;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
             flex-wrap: wrap;
+            gap: 8px;
         }
-
         .panel-header h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1a3e5c;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
+        }
+        .pagination-info {
+            font-size: 0.7rem;
+            color: #5a7a9a;
         }
 
-        .panel-header h2 i {
-            color: #2c6e9e;
-        }
-
+        /* 表格 - 手機可橫滑，列寬固定對齊 */
         .table-wrapper {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-
         .rank-table {
+            min-width: 580px;
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.85rem;
         }
-
         .rank-table th {
             text-align: left;
-            padding: 14px 18px;
+            padding: 12px 12px;
             background: #f8fafd;
             font-weight: 600;
             color: #2c5a7a;
             border-bottom: 1px solid #e2edf6;
         }
-
         .rank-table td {
-            padding: 14px 18px;
+            padding: 12px 12px;
             border-bottom: 1px solid #ecf3fa;
             cursor: pointer;
-            transition: 0.1s;
+            vertical-align: middle;
         }
-
-        .rank-table tr:hover td {
-            background: #eef4fc;
-        }
-
         .rank-number {
             font-weight: 700;
             color: #3a6b92;
-            width: 60px;
+            width: 55px;
         }
-
         .player-name-cell {
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            font-weight: 600;
+            gap: 10px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
-
         .player-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(145deg, #eaf3fc, #dce8f2);
+            width: 32px;
+            height: 32px;
+            background: #eaf3fc;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
-
         .player-id {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #8aa9c2;
+            margin-left: 4px;
             font-weight: normal;
+            white-space: nowrap;
         }
-
         .player-streak {
             background: #e9f0f7;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #2c6e9e;
+            white-space: nowrap;
         }
-
         .score-value {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #1e5a88;
         }
+        .win-loss {
+            font-size: 0.7rem;
+            color: #6f8daa;
+            white-space: nowrap;
+        }
 
-        /* 約戰大廳 (預約戰鬥空間) */
-        .battle-lobby {
-            flex: 1.2;
-            min-width: 280px;
+        /* 約戰大廳 & 資訊面板 */
+        .battle-lobby, .info-panel {
             background: #ffffffdd;
             backdrop-filter: blur(4px);
             border-radius: 24px;
             border: 1px solid rgba(44,110,158,0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
+            overflow: hidden;
         }
-
-        .lobby-header {
-            padding: 18px 24px;
+        .lobby-header, .info-block h3 {
+            padding: 14px 16px;
             background: linear-gradient(90deg, #fafdff, #f0f6fe);
             border-bottom: 2px solid #2c6e9e;
-        }
-
-        .lobby-header h3 {
-            font-size: 1.2rem;
             font-weight: 700;
-            color: #1a3e5c;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
-
         .create-room-btn {
             background: #2c6e9e;
             color: white;
@@ -409,154 +333,101 @@
             padding: 12px;
             border-radius: 40px;
             font-weight: 600;
-            margin: 16px 20px;
+            margin: 16px;
+            width: calc(100% - 32px);
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-
-        .create-room-btn:hover {
-            background: #1e5a88;
-            transform: scale(0.98);
-        }
-
         .room-list {
-            padding: 0 16px 20px;
-            max-height: 380px;
+            padding: 0 12px 20px;
+            max-height: 340px;
             overflow-y: auto;
         }
-
         .room-card {
             background: #f8fbfe;
             border-radius: 20px;
-            padding: 14px;
+            padding: 12px;
             margin-bottom: 12px;
             border: 1px solid #e2edf6;
-            transition: 0.2s;
         }
-
-        .room-card:hover {
-            border-color: #2c6e9e;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
         .room-title {
             font-weight: 700;
-            color: #1e4a6e;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
-
         .room-detail {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #5a7e9c;
             margin: 8px 0;
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
-
-        .room-detail i {
-            width: 20px;
-        }
-
         .join-btn {
             background: transparent;
             border: 1px solid #2c6e9e;
-            padding: 6px 12px;
-            border-radius: 40px;
+            padding: 4px 12px;
+            border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 600;
-            color: #2c6e9e;
             cursor: pointer;
-            transition: 0.2s;
         }
-
-        .join-btn:hover {
-            background: #2c6e9e;
-            color: white;
+        .info-block {
+            padding: 0 0 16px 0;
         }
-
-        .info-panel {
-            flex: 0.9;
-            min-width: 240px;
-            background: #ffffffdd;
-            backdrop-filter: blur(4px);
-            border-radius: 24px;
-            border: 1px solid rgba(44,110,158,0.2);
-            padding: 20px;
-            height: fit-content;
-        }
-
-        .info-block h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            border-left: 4px solid #2c6e9e;
-            padding-left: 12px;
-            margin-bottom: 16px;
-            color: #1e4a6e;
-        }
-
         .rule-list {
             list-style: none;
+            padding: 0 16px;
         }
-
         .rule-list li {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             padding: 8px 0;
             border-bottom: 1px solid #e9f0f7;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .stat-badge {
             background: #eef3fc;
             border-radius: 20px;
-            padding: 14px;
-            margin-top: 20px;
+            padding: 12px;
+            margin: 12px 16px;
             text-align: center;
         }
-
         .stat-number {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            color: #1e5a88;
         }
-
         .double-stats {
             display: flex;
             gap: 12px;
-            margin-top: 12px;
+            margin-top: 8px;
         }
-
         .stat-item {
             flex: 1;
             background: white;
             border-radius: 16px;
-            padding: 8px;
+            padding: 6px;
         }
-
         footer {
-            margin-top: 48px;
+            margin-top: 28px;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
+            padding: 16px 0 8px;
             color: #6c8eaa;
             border-top: 1px solid #d4e2f0;
-            padding-top: 20px;
         }
 
-        /* Popup 樣式保持原有 */
+        /* Popup */
         .popup-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
@@ -566,61 +437,73 @@
             visibility: hidden;
             transition: 0.2s;
         }
-
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        .popup-overlay.active { opacity: 1; visibility: visible; }
         .popup-container {
             background: white;
-            width: 90%;
-            max-width: 460px;
+            width: 88%;
+            max-width: 380px;
             border-radius: 32px;
             overflow: hidden;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
         }
-
         .popup-header {
-            padding: 20px 24px;
+            padding: 16px 20px;
             background: #fafdff;
             border-bottom: 2px solid #2c6e9e;
             display: flex;
             justify-content: space-between;
         }
-
         .popup-close {
+            font-size: 1.6rem;
             background: none;
             border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
         }
-
-        .popup-body {
-            padding: 24px;
-        }
-
+        .popup-body { padding: 20px; }
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #ecf3fa;
         }
-
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .stat-card {
+            background: #f0f6fc;
+            padding: 8px;
+            text-align: center;
+            border-radius: 16px;
+            font-size: 0.8rem;
         }
 
-        @media (max-width: 1000px) {
-            .dashboard {
-                flex-direction: column;
-            }
-            .container {
-                padding: 16px;
-            }
+        /* 點擊回饋 */
+        .rank-table tr:active td {
+            background: #d9e6f5;
+        }
+        button, .join-btn, .page-btn {
+            touch-action: manipulation;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            background: transparent;
+            border: 1px solid #c0d4e8;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        .page-btn.active {
+            background: #2c6e9e;
+            color: white;
+            border-color: #2c6e9e;
         }
     </style>
 </head>
@@ -629,18 +512,16 @@
     <div class="navbar">
         <div class="logo-area">
             <h1><i class="fas fa-bezier-curve"></i> 天馬陀螺戰榜</h1>
-            <p>香港街頭對戰 · 積分排名系統</p>
+            <p>香港街頭對戰 · 即時排名</p>
         </div>
-        <button class="menu-btn" id="menuToggleBtn">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="menu-btn" id="menuToggleBtn"><span></span><span></span><span></span></button>
     </div>
 
-    <!-- 側邊選單 -->
+    <!-- 側選單 -->
     <div class="side-menu" id="sideMenu">
         <div class="menu-header">
             <div class="user-icon-large"><i class="fas fa-user-astronaut"></i></div>
-            <div class="menu-header-text" id="sideUserName">訪客</div>
+            <div id="sideUserName">訪客</div>
         </div>
         <ul class="menu-items">
             <li><a id="loginMenuItem"><i class="fas fa-sign-in-alt"></i> 登入 / 註冊</a></li>
@@ -652,13 +533,13 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
-    <!-- 搜尋 -->
+    <!-- 搜尋列 (手機友善) -->
     <div class="search-bar">
-        <input type="text" class="search-input" id="searchInput" placeholder="搜尋玩家名稱 或 ID (例: GY001)">
+        <input type="text" class="search-input" id="searchInput" placeholder="玩家名稱 或 ID (例: GY001)">
         <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> 搜尋</button>
         <button class="clear-btn" id="clearSearchBtn"><i class="fas fa-times"></i> 清除</button>
     </div>
-    <div id="searchResultInfo" class="search-result-info" style="font-size:0.75rem; margin-top:-10px; margin-bottom:16px;"></div>
+    <div id="searchResultInfo" class="search-result-info"></div>
 
     <div class="dashboard">
         <!-- 排名榜 -->
@@ -673,29 +554,25 @@
                     <tbody id="rankTbody"><tr><td colspan="5">載入中...</td></tr></tbody>
                 </table>
             </div>
-            <div class="pagination" id="paginationControls" style="display: flex; justify-content: center; gap: 8px; padding: 16px;"></div>
+            <div class="pagination" id="paginationControls"></div>
         </div>
 
-        <!-- 約戰大廳 (預約戰鬥空間) -->
+        <!-- 約戰大廳 -->
         <div class="battle-lobby">
-            <div class="lobby-header">
-                <h3><i class="fas fa-users"></i> 約戰大廳</h3>
-            </div>
+            <div class="lobby-header"><i class="fas fa-users"></i> 約戰大廳</div>
             <button class="create-room-btn" id="createRoomBtn"><i class="fas fa-plus-circle"></i> 開設陀螺房間</button>
-            <div class="room-list" id="roomList">
-                <div style="text-align:center; color:#7c9cbb; padding:20px;">載入約戰中...</div>
-            </div>
+            <div class="room-list" id="roomList">載入中...</div>
         </div>
 
-        <!-- 右側資訊 -->
+        <!-- 規則資訊 -->
         <div class="info-panel">
             <div class="info-block">
                 <h3><i class="fas fa-dice-d6"></i> 積分規則</h3>
                 <ul class="rule-list">
                     <li><i class="fas fa-star"></i> 初始1000分</li>
                     <li><i class="fas fa-bolt"></i> 勝者奪敗者10% (上限150)</li>
-                    <li><i class="fas fa-shield-alt"></i> 新手保護 ≤500分僅扣5%</li>
-                    <li><i class="fas fa-clock"></i> 同一對手24小時一次</li>
+                    <li><i class="fas fa-shield-alt"></i> 新手保護 ≤500分扣5%</li>
+                    <li><i class="fas fa-clock"></i> 同一對手24hr一次</li>
                     <li><i class="fas fa-fire"></i> 連勝加成: 3連勝+2%</li>
                 </ul>
                 <div class="stat-badge">
@@ -709,10 +586,10 @@
             </div>
         </div>
     </div>
-    <footer><i class="fas fa-bezier-curve"></i> 香港爆旋陀螺協會 · 公平競技 熱血傳承</footer>
+    <footer><i class="fas fa-bezier-curve"></i> 香港爆旋陀螺協會 · 公平競技</footer>
 </div>
 
-<!-- Popup 模態窗 -->
+<!-- Popup -->
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup-container">
         <div class="popup-header"><h3 id="popupName">玩家</h3><button class="popup-close" id="popupCloseBtn">&times;</button></div>
@@ -721,8 +598,8 @@
 </div>
 
 <script>
-    // ---------- 玩家數據 (過千) ----------
-    const STORAGE_PLAYERS = "gyro_rank_full_hk_v3";
+    // ---------- 玩家數據 ----------
+    const STORAGE_PLAYERS = "gyro_rank_mobile_v1";
     function generateMockPlayers(count) {
         const prefixes = ["星穹","銀翼","雷光","霜羽","烈風","冰晶","炎羽","蒼海","破曉","暗影"];
         const suffixes = ["天馬","龍騎","飛獅","白狼","鷹眼","獨角","鳳凰","戰鯊","騎士","武士"];
@@ -742,7 +619,8 @@
         players.sort((a,b)=>b.score-a.score);
         return players;
     }
-    let allPlayers=[], filteredPlayers=[], currentPage=1, itemsPerPage=20, currentSearchTerm="";
+    let allPlayers=[], filteredPlayers=[], currentPage=1, itemsPerPage=15;
+    let currentSearchTerm="";
     function loadData() {
         let stored = localStorage.getItem(STORAGE_PLAYERS);
         if(stored) allPlayers = JSON.parse(stored);
@@ -759,87 +637,109 @@
     }
     function updateSearchInfo() {
         let div=document.getElementById("searchResultInfo");
-        if(currentSearchTerm) div.innerHTML=`搜尋 "${currentSearchTerm}" 共 ${filteredPlayers.length} 位`;
+        if(currentSearchTerm) div.innerHTML=`<i class="fas fa-search"></i> 搜尋 "${currentSearchTerm}" 共 ${filteredPlayers.length} 位`;
         else div.innerHTML="";
     }
     function clearSearch() { document.getElementById("searchInput").value=""; searchPlayers(""); }
     function getGlobalHighestStreak() { return Math.max(...allPlayers.map(p=>p.streak||0),0); }
-    function showPlayerPopup(player) {
-        let rank = allPlayers.findIndex(p=>p.id===player.id)+1;
-        let total=player.wins+player.losses+player.ties;
-        let winRate=total?Math.round(player.wins/total*100):0;
-        document.getElementById("popupName").innerHTML = `${player.icon||'🏆'} ${player.name}`;
+    function showPlayerPopup(p) {
+        let rank = allPlayers.findIndex(p2=>p2.id===p.id)+1;
+        let total=p.wins+p.losses+p.ties;
+        let winRate=total?Math.round(p.wins/total*100):0;
+        document.getElementById("popupName").innerHTML = `${p.icon||'🏆'} ${p.name}`;
         document.getElementById("popupBody").innerHTML = `
-            <div class="info-row"><span>ID</span><span>${player.id}</span></div>
-            <div class="info-row"><span>全港排名</span><span>第 ${rank} 位</span></div>
-            <div class="info-row"><span>積分</span><span>${player.score}</span></div>
-            <div class="info-row"><span>連勝</span><span>${player.streak}</span></div>
-            <div class="stats-grid"><div class="stat-card">${player.wins}<br>勝</div><div>${player.losses}<br>敗</div><div>${player.ties}<br>平</div><div>${winRate}%<br>勝率</div></div>
+            <div class="info-row"><span>ID</span><span>${p.id}</span></div>
+            <div class="info-row"><span>全港排名</span><span>第 ${rank}</span></div>
+            <div class="info-row"><span>積分</span><span>${p.score}</span></div>
+            <div class="info-row"><span>連勝</span><span>${p.streak}</span></div>
+            <div class="stats-grid"><div class="stat-card">${p.wins}<br>勝</div><div class="stat-card">${p.losses}<br>敗</div><div class="stat-card">${p.ties}<br>平</div><div class="stat-card">${winRate}%<br>勝率</div></div>
         `;
         document.getElementById("popupOverlay").classList.add("active");
     }
     function closePopup() { document.getElementById("popupOverlay").classList.remove("active"); }
     function renderRanking() {
         let tbody=document.getElementById("rankTbody");
-        let start=(currentPage-1)*itemsPerPage, end=start+itemsPerPage, pagePlayers=filteredPlayers.slice(start,end);
+        let start=(currentPage-1)*itemsPerPage, end=start+itemsPerPage;
+        let pagePlayers=filteredPlayers.slice(start,end);
         if(!pagePlayers.length){ tbody.innerHTML="<tr><td colspan='5'>暫無資料</td></tr>"; return; }
         let html="";
         pagePlayers.forEach(p=>{
             let rank=allPlayers.findIndex(p2=>p2.id===p.id)+1;
-            html+=`<tr data-id="${p.id}"><td class="rank-number">${rank}<td class="player-name-cell"><span class="player-icon">${p.icon||'⚔️'}</span> ${p.name} <span class="player-id">(${p.id})</span><td class="score-value">${p.score}<td><span class="player-streak">${p.streak}連勝</span><td>${p.wins}勝 ${p.losses}敗 ${p.ties}平</tr>`;
+            html+=`<tr data-id="${p.id}">
+                <td class="rank-number">${rank}</td>
+                <td class="player-name-cell"><span class="player-icon">${p.icon||'⚔️'}</span> ${p.name} <span class="player-id">(${p.id})</span></td>
+                <td class="score-value">${p.score}</td>
+                <td><span class="player-streak">${p.streak}連勝</span></td>
+                <td class="win-loss">${p.wins}勝 ${p.losses}敗 ${p.ties}平</td>
+            </tr>`;
         });
         tbody.innerHTML=html;
-        document.querySelectorAll("#rankTbody tr").forEach(row=>{ row.addEventListener("click",()=>{ let pid=row.getAttribute("data-id"); let pl=allPlayers.find(p=>p.id===pid); if(pl) showPlayerPopup(pl); }); });
-        document.getElementById("paginationInfo").innerHTML=`顯示 ${start+1}-${Math.min(end,filteredPlayers.length)} / 共 ${filteredPlayers.length}`;
+        document.querySelectorAll("#rankTbody tr").forEach(row=>{
+            row.addEventListener("click",()=>{
+                let pid=row.getAttribute("data-id");
+                let pl=allPlayers.find(p=>p.id===pid);
+                if(pl) showPlayerPopup(pl);
+            });
+        });
+        document.getElementById("paginationInfo").innerHTML=`${start+1}-${Math.min(end,filteredPlayers.length)} / ${filteredPlayers.length}`;
         document.getElementById("totalPlayersCount").innerText=allPlayers.length;
         document.getElementById("highestStreak").innerText=getGlobalHighestStreak();
-        let topPlayer=[...allPlayers].sort((a,b)=>b.score-a.score)[0];
-        if(topPlayer) document.getElementById("weeklyChampion").innerText=topPlayer.name;
+        let top=[...allPlayers].sort((a,b)=>b.score-a.score)[0];
+        if(top) document.getElementById("weeklyChampion").innerText=top.name;
         renderPagination();
     }
-    function renderPagination(){
-        let totalPages=Math.ceil(filteredPlayers.length/itemsPerPage), div=document.getElementById("paginationControls");
+    function renderPagination() {
+        let totalPages=Math.ceil(filteredPlayers.length/itemsPerPage);
+        let div=document.getElementById("paginationControls");
         if(totalPages<=1){ div.innerHTML=""; return; }
-        let html=`<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1?'disabled':''}>〈 上一頁</button>`;
-        for(let i=Math.max(1,currentPage-2);i<=Math.min(totalPages,currentPage+2);i++) html+=`<button class="page-btn ${i===currentPage?'active':''}" data-page="${i}">${i}</button>`;
+        let html=``;
+        html+=`<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1?'disabled':''}>〈 上一頁</button>`;
+        for(let i=Math.max(1,currentPage-2);i<=Math.min(totalPages,currentPage+2);i++)
+            html+=`<button class="page-btn ${i===currentPage?'active':''}" data-page="${i}">${i}</button>`;
         html+=`<button class="page-btn" data-page="${currentPage+1}" ${currentPage===totalPages?'disabled':''}>下一頁 〉</button>`;
         div.innerHTML=html;
-        document.querySelectorAll(".page-btn").forEach(btn=>{ if(!btn.disabled && btn.dataset.page) btn.addEventListener("click",()=>{ currentPage=parseInt(btn.dataset.page); renderRanking(); }); });
+        document.querySelectorAll(".page-btn").forEach(btn=>{
+            if(!btn.disabled && btn.dataset.page)
+                btn.addEventListener("click",()=>{ currentPage=parseInt(btn.dataset.page); renderRanking(); });
+        });
     }
 
-    // 約戰大廳模擬 (預留功能)
+    // 約戰大廳模擬
     let mockRooms = [
         { id:"rm1", host:"星穹天馬", location:"維園草地", time:"今晚 8:00", players:2, max:4 },
-        { id:"rm2", host:"銀翼龍騎", location:"麥花臣球場", time:"4月19日 15:00", players:1, max:4 },
+        { id:"rm2", host:"銀翼龍騎", location:"麥花臣球場", time:"4月20日 15:00", players:1, max:4 },
         { id:"rm3", host:"雷光飛獅", location:"荔枝角公園", time:"週六 14:30", players:3, max:4 }
     ];
     function renderRooms() {
         let container=document.getElementById("roomList");
-        if(!container) return;
         if(mockRooms.length===0){ container.innerHTML="<div style='text-align:center;padding:20px'>暫無約戰，快開設房間！</div>"; return; }
         let html="";
         mockRooms.forEach(r=>{
-            html+=`<div class="room-card"><div class="room-title"><span><i class="fas fa-gamepad"></i> ${r.host} 的房間</span><span class="join-btn" data-id="${r.id}">加入對戰</span></div>
+            html+=`<div class="room-card"><div class="room-title"><span><i class="fas fa-gamepad"></i> ${r.host} 的房間</span><button class="join-btn" data-id="${r.id}">加入</button></div>
             <div class="room-detail"><i class="fas fa-map-marker-alt"></i> ${r.location} &nbsp; <i class="far fa-clock"></i> ${r.time}</div>
             <div class="room-detail"><i class="fas fa-user-friends"></i> ${r.players}/${r.max} 人</div></div>`;
         });
         container.innerHTML=html;
-        document.querySelectorAll(".join-btn").forEach(btn=>{ btn.addEventListener("click",(e)=>{ e.stopPropagation(); alert("預約戰鬥功能開發中，稍後可綁定掃碼對戰。"); }); });
+        document.querySelectorAll(".join-btn").forEach(btn=>{
+            btn.addEventListener("click",(e)=>{ e.stopPropagation(); alert("預約戰鬥功能開發中，將結合掃碼對戰。"); });
+        });
     }
-    document.getElementById("createRoomBtn")?.addEventListener("click",()=>{ alert("開設陀螺房間 (可設定時間地點、人數上限) 將於下個版本推出。"); });
 
-    // 側邊欄、登入模擬
+    // UI 事件
+    document.getElementById("createRoomBtn")?.addEventListener("click",()=>{ alert("開設房間：可設定時間、地點、人數 (敬請期待)"); });
     const menuBtn=document.getElementById("menuToggleBtn"), sideMenu=document.getElementById("sideMenu"), overlay=document.getElementById("overlay");
     function openMenu(){ sideMenu.classList.add("open"); overlay.classList.add("active"); }
     function closeMenu(){ sideMenu.classList.remove("open"); overlay.classList.remove("active"); }
-    menuBtn.addEventListener("click",openMenu); overlay.addEventListener("click",closeMenu);
+    menuBtn.addEventListener("click",openMenu);
+    overlay.addEventListener("click",closeMenu);
     let isLogged=false;
-    document.getElementById("loginMenuItem")?.addEventListener("click",(e)=>{ e.preventDefault(); isLogged=!isLogged; document.getElementById("sideUserName").innerText=isLogged?"天馬戰士":"訪客"; alert("登入功能預留，將綁定玩家ID"); closeMenu(); });
+    document.getElementById("loginMenuItem")?.addEventListener("click",(e)=>{ e.preventDefault(); isLogged=!isLogged; document.getElementById("sideUserName").innerHTML=isLogged?"天馬戰士":"訪客"; alert("登入功能預留，將綁定玩家ID"); closeMenu(); });
     document.querySelectorAll(".menu-items li a").forEach(link=>{ if(link.id!=="loginMenuItem") link.addEventListener("click",()=>{ alert("此功能開發中"); closeMenu(); }); });
     document.getElementById("searchBtn")?.addEventListener("click",()=>searchPlayers(document.getElementById("searchInput").value));
     document.getElementById("clearSearchBtn")?.addEventListener("click",clearSearch);
     document.getElementById("popupCloseBtn")?.addEventListener("click",closePopup);
     document.getElementById("popupOverlay")?.addEventListener("click",(e)=>{ if(e.target===document.getElementById("popupOverlay")) closePopup(); });
+    document.getElementById("searchInput")?.addEventListener("keypress",(e)=>{ if(e.key==="Enter") searchPlayers(e.target.value); });
 
     loadData(); renderRanking(); renderRooms();
 </script>
