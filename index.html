@@ -667,9 +667,7 @@
             </div>
             <div class="table-wrapper">
                 <table class="rank-table" id="rankTable">
-                    <thead>
-                        <tr><th>排名</th><th>戰士</th><th>積分</th><th>連勝</th><th>戰績</th></tr>
-                    </thead>
+                    <thead><tr><th>排名</th><th>戰士</th><th>積分</th><th>連勝</th><th>戰績</th></tr></thead>
                     <tbody id="rankTbody"><tr><td colspan="5">載入中...</td></tr></tbody>
                 </table>
             </div>
@@ -726,47 +724,19 @@
                 <button class="tab-btn" id="registerTabBtn">註冊</button>
             </div>
             <div id="loginForm">
-                <div class="form-group">
-                    <label>玩家ID (5位數字)</label>
-                    <input type="text" id="loginId" placeholder="例如 12345" maxlength="5">
-                </div>
-                <div class="form-group">
-                    <label>密碼</label>
-                    <input type="password" id="loginPassword" placeholder="密碼">
-                </div>
+                <div class="form-group"><label>玩家ID (5位數字)</label><input type="text" id="loginId" placeholder="例如 12345" maxlength="5"></div>
+                <div class="form-group"><label>密碼</label><input type="password" id="loginPassword" placeholder="密碼"></div>
                 <button id="doLoginBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">登入</button>
-                <div style="margin-top:12px; text-align:center;">
-                    <button id="googleLoginBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> Google 登入</button>
-                </div>
+                <div style="margin-top:12px; text-align:center;"><button id="googleLoginBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> Google 登入</button></div>
                 <div class="login-hint" style="font-size:0.7rem; text-align:center; margin-top:12px;">未註冊？請切換至「註冊」建立新帳號</div>
             </div>
             <div id="registerForm" style="display:none;">
-                <div class="form-group">
-                    <label>戰士名稱</label>
-                    <input type="text" id="regName" placeholder="例如 天馬戰士">
-                </div>
-                <div class="form-group">
-                    <label>活躍區域</label>
-                    <select id="regDistrict">
-                        <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
-                        <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
-                        <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
-                        <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
-                        <option>灣仔區</option><option>中西區</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>密碼</label>
-                    <input type="password" id="regPassword" placeholder="密碼">
-                </div>
-                <div class="form-group">
-                    <label>頭像 (Emoji 或 上傳)</label>
-                    <div class="emoji-grid" id="regEmojiGrid"></div>
-                    <label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
-                    <input type="file" id="regAvatarUpload" accept="image/*" style="display:none;">
-                    <div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div>
-                </div>
+                <div class="form-group"><label>戰士名稱</label><input type="text" id="regName" placeholder="例如 天馬戰士"></div>
+                <div class="form-group"><label>活躍區域</label><select id="regDistrict"><option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option><option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option><option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option><option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option><option>灣仔區</option><option>中西區</option></select></div>
+                <div class="form-group"><label>密碼</label><input type="password" id="regPassword" placeholder="密碼"></div>
+                <div class="form-group"><label>頭像 (Emoji 或 上傳)</label><div class="emoji-grid" id="regEmojiGrid"></div><label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label><input type="file" id="regAvatarUpload" accept="image/*" style="display:none;"><div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div></div>
                 <button id="doRegisterBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">註冊新帳號</button>
+                <div style="margin-top:12px; text-align:center;"><button id="regGoogleBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> 使用 Google 註冊</button></div>
             </div>
         </div>
     </div>
@@ -778,23 +748,13 @@
         <div class="modal-header"><h3>編輯我的檔案</h3><button class="modal-close" id="closeProfileBtn">&times;</button></div>
         <div class="modal-body">
             <div class="emoji-grid" id="profileEmojiGrid"></div>
-            <div class="upload-area">
-                <label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
-                <input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;">
-                <div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div>
-            </div>
-            <select id="profileDistrict" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;">
-                <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
-                <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
-                <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
-                <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
-                <option>灣仔區</option><option>中西區</option>
-            </select>
+            <div class="upload-area"><label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label><input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;"><div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div></div>
+            <select id="profileDistrict" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;"><option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option><option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option><option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option><option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option><option>灣仔區</option><option>中西區</option></select>
             <button id="saveProfileBtn" style="width:100%; margin-top:16px; background:#1e5a88; color:white; padding:10px; border:none; border-radius:40px;">儲存變更</button>
         </div>
     </div>
 </div>
-<!-- 簡易 Toast 提示 -->
+
 <div id="toastMessage" class="toast"></div>
 
 <script type="module">
@@ -818,14 +778,16 @@
     const provider = new GoogleAuthProvider();
 
     // ---------- 全域變數 ----------
-    let currentUser = null;          // 儲存登入後的完整玩家資料 (含 id, name, player_number, avatar, district, score...)
+    let currentUser = null;
     let allPlayers = [];
     let filteredPlayers = [];
     let currentPage = 1;
     const itemsPerPage = 15;
     let currentSearchTerm = "";
+    let selectedRegAvatar = "🏆";
+    let selectedProfileAvatar = null;
 
-    // DOM 元素 (需等待載入)
+    // DOM 元素 (延遲初始化)
     let rankTbody, searchInput, searchBtn, clearBtn, paginationControls, paginationInfo;
     let totalPlayersSpan, highestStreakSpan, weeklyChampionSpan;
     let sideUserAvatar, sideUserName, loginMenuItem;
@@ -835,7 +797,7 @@
     let popupOverlay, popupName, popupBody, popupCloseBtn;
     let createRoomBtn, roomList;
 
-    // 輔助函數：顯示 Toast 訊息
+    // 輔助函數
     function showToast(msg, isError = false) {
         const toast = document.getElementById("toastMessage");
         if (!toast) return;
@@ -845,7 +807,6 @@
         setTimeout(() => toast.classList.remove("show"), 3000);
     }
 
-    // 顯示 loading 按鈕狀態 (簡單實現)
     function setButtonLoading(btn, isLoading) {
         if (!btn) return;
         if (isLoading) {
@@ -865,7 +826,6 @@
         if (docSnap.exists()) {
             return { id: firebaseUser.uid, ...docSnap.data() };
         } else {
-            // 新用戶：建立玩家資料
             const numericId = Math.floor(10000 + Math.random() * 90000);
             const displayName = firebaseUser.displayName || (firebaseUser.email ? firebaseUser.email.split('@')[0] : "新戰士");
             const newPlayer = {
@@ -908,11 +868,10 @@
         currentUser.avatar = avatar;
         currentUser.district = district;
         updateSidebarUI();
-        loadRankings(); // 刷新排行榜
+        loadRankings();
         showToast("檔案已更新");
     }
 
-    // 登出 (帶確認)
     async function logout() {
         if (confirm("確定要登出嗎？")) {
             await signOut(auth);
@@ -920,14 +879,10 @@
         }
     }
 
-    // Email/密碼登入
     async function doLogin() {
         const numericId = loginIdInput.value.trim();
         const password = loginPasswordInput.value;
-        if (!numericId || !password) {
-            showToast("請輸入數字ID和密碼", true);
-            return;
-        }
+        if (!numericId || !password) { showToast("請輸入數字ID和密碼", true); return; }
         const email = numericId + "@gyro.local";
         setButtonLoading(doLoginBtn, true);
         try {
@@ -945,16 +900,13 @@
         }
     }
 
-    // Google 登入 (彈出視窗)
     async function googleLogin() {
         setButtonLoading(googleLoginBtn, true);
         try {
             const result = await signInWithPopup(auth, provider);
-            // 登入成功後 onAuthStateChanged 會自動處理
             closeAuthModal();
             showToast(`歡迎，${result.user.displayName || "玩家"}`);
         } catch (error) {
-            console.error(error);
             let msg = "Google 登入失敗";
             if (error.code === 'auth/popup-closed-by-user') msg = "您關閉了彈窗，請重新嘗試";
             else if (error.code === 'auth/account-exists-with-different-credential') msg = "此電子郵件已使用其他方式註冊";
@@ -964,19 +916,12 @@
         }
     }
 
-    // 註冊 (Email/密碼)
     async function doRegister() {
         const name = regNameInput.value.trim();
         const district = regDistrictSelect.value;
         const password = regPasswordInput.value;
-        if (!name || !password) {
-            showToast("請填寫名稱和密碼", true);
-            return;
-        }
-        if (password.length < 6) {
-            showToast("密碼至少 6 位", true);
-            return;
-        }
+        if (!name || !password) { showToast("請填寫名稱和密碼", true); return; }
+        if (password.length < 6) { showToast("密碼至少 6 位", true); return; }
         const numericId = Math.floor(10000 + Math.random() * 90000);
         const email = numericId + "@gyro.local";
         setButtonLoading(doRegisterBtn, true);
@@ -986,7 +931,7 @@
             const newPlayer = {
                 player_number: numericId,
                 name: name,
-                avatar: selectedRegAvatar || "🏆",
+                avatar: selectedRegAvatar,
                 district: district,
                 score: 1000,
                 streak: 0,
@@ -998,7 +943,6 @@
             await setDoc(doc(db, "players", uid), newPlayer);
             showToast(`註冊成功！您的玩家ID是 ${numericId}，請用此ID登入`);
             switchAuthTab('login');
-            // 清空表單
             regNameInput.value = "";
             regPasswordInput.value = "";
         } catch (error) {
@@ -1010,12 +954,10 @@
         }
     }
 
-    // 註冊表單中的 Google 註冊 (實際上就是 Google 登入，但為了UX明確)
     async function registerWithGoogle() {
         await googleLogin();
     }
 
-    // ---------- UI 更新 ----------
     function updateSidebarUI() {
         if (currentUser) {
             const av = currentUser.avatar;
@@ -1033,31 +975,219 @@
         }
     }
 
-    // 監聽 Auth 狀態變化 (現代化即時更新)
+    // 監聽 Auth 狀態
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            // 登入或註冊後，取得 / 更新玩家資料
             currentUser = await getOrCreatePlayer(user);
             updateSidebarUI();
-            // 若排行榜尚未載入則載入，否則重新整理以顯示自己的資料
             if (allPlayers.length === 0) await loadRankings();
-            else loadRankings(); // 刷新確保個人分數正確
-            // 關閉任何開啟的 modal
+            else loadRankings();
             closeAuthModal();
             closeProfileModal();
         } else {
             currentUser = null;
             updateSidebarUI();
-            // 不清空排行榜，讓訪客仍可瀏覽
         }
     });
 
-    // 初次載入排行榜
-    loadRankings();
+    // 排行榜渲染函數
+    function renderRanking() {
+        if (!rankTbody) return;
+        const start = (currentPage - 1) * itemsPerPage;
+        const pagePlayers = filteredPlayers.slice(start, start + itemsPerPage);
+        if (pagePlayers.length === 0) { rankTbody.innerHTML = "<tr><td colspan='5'>暫無資料</td></tr>"; return; }
+        let html = "";
+        pagePlayers.forEach(p => {
+            const rank = allPlayers.findIndex(p2 => p2.id === p.id) + 1;
+            let avatarHtml = p.avatar;
+            if (p.avatar && (p.avatar.startsWith("http") || p.avatar.startsWith("data:image"))) {
+                avatarHtml = `<img src="${p.avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+            }
+            html += `<tr data-id="${p.id}">
+                <td class="rank-number">${rank}</td>
+                <td class="player-name-cell"><span class="player-avatar">${avatarHtml}</span> ${p.name} <span class="player-id">(${p.player_number})</span></td>
+                <td class="score-value">${p.score}</td>
+                <td><span class="player-streak">${p.streak}連勝</span></td>
+                <td class="win-loss">${p.wins}勝 ${p.losses}敗 ${p.ties}平</td>
+            </tr>`;
+        });
+        rankTbody.innerHTML = html;
+        document.querySelectorAll("#rankTbody tr").forEach(row => {
+            row.addEventListener("click", () => {
+                const pid = row.getAttribute("data-id");
+                const player = allPlayers.find(p => p.id === pid);
+                if (player) showPlayerPopup(player);
+            });
+        });
+        paginationInfo.innerText = `${start+1}-${Math.min(start+itemsPerPage, filteredPlayers.length)} / ${filteredPlayers.length}`;
+        totalPlayersSpan.innerText = allPlayers.length;
+        const maxStreak = Math.max(...allPlayers.map(p => p.streak || 0), 0);
+        highestStreakSpan.innerText = maxStreak;
+        if (allPlayers.length) weeklyChampionSpan.innerText = allPlayers[0].name;
+        renderPagination();
+    }
 
-    // 其餘 UI 事件綁定 (與之前類似，但確保 Google 按鈕正確)
+    function renderPagination() {
+        const totalPages = Math.ceil(filteredPlayers.length / itemsPerPage);
+        if (totalPages <= 1) { paginationControls.innerHTML = ""; return; }
+        let html = `<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1 ? 'disabled' : ''}>〈 上一頁</button>`;
+        for (let i = Math.max(1, currentPage-2); i <= Math.min(totalPages, currentPage+2); i++)
+            html += `<button class="page-btn ${i===currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        html += `<button class="page-btn" data-page="${currentPage+1}" ${currentPage===totalPages ? 'disabled' : ''}>下一頁 〉</button>`;
+        paginationControls.innerHTML = html;
+        document.querySelectorAll(".page-btn").forEach(btn => {
+            if (!btn.disabled && btn.dataset.page)
+                btn.addEventListener("click", () => { currentPage = parseInt(btn.dataset.page); renderRanking(); });
+        });
+    }
+
+    function searchPlayers(term) {
+        currentSearchTerm = term.trim().toLowerCase();
+        if (!currentSearchTerm) filteredPlayers = [...allPlayers];
+        else filteredPlayers = allPlayers.filter(p => p.name.toLowerCase().includes(currentSearchTerm) || p.player_number.toString().includes(currentSearchTerm));
+        currentPage = 1;
+        renderRanking();
+        const infoDiv = document.getElementById("searchResultInfo");
+        if (currentSearchTerm) infoDiv.innerHTML = `<i class="fas fa-search"></i> 搜尋 "${currentSearchTerm}" 共 ${filteredPlayers.length} 位`;
+        else infoDiv.innerHTML = "";
+    }
+
+    function showPlayerPopup(player) {
+        const rank = allPlayers.findIndex(p => p.id === player.id) + 1;
+        const total = player.wins + player.losses + player.ties;
+        const winRate = total ? Math.round(player.wins / total * 100) : 0;
+        let avatarHtml = player.avatar;
+        if (player.avatar && (player.avatar.startsWith("http") || player.avatar.startsWith("data:image"))) {
+            avatarHtml = `<img src="${player.avatar}" style="width:100%; height:100%; object-fit:cover;">`;
+        }
+        popupName.innerText = player.name;
+        popupBody.innerHTML = `
+            <div class="popup-avatar"><div class="avatar-large">${avatarHtml}</div></div>
+            <div class="info-row"><span>玩家ID</span><span>${player.player_number}</span></div>
+            <div class="info-row"><span>活躍區域</span><span>${player.district || "未設定"}</span></div>
+            <div class="info-row"><span>全港排名</span><span>第 ${rank}</span></div>
+            <div class="info-row"><span>積分</span><span>${player.score}</span></div>
+            <div class="info-row"><span>連勝</span><span>${player.streak}</span></div>
+            <div class="stats-grid"><div class="stat-card">${player.wins}<br>勝</div><div class="stat-card">${player.losses}<br>敗</div><div class="stat-card">${player.ties}<br>平</div><div class="stat-card">${winRate}%<br>勝率</div></div>
+        `;
+        popupOverlay.classList.add("active");
+    }
+
+    function closePopup() { popupOverlay.classList.remove("active"); }
+
+    // Modal 控制
+    function openAuthModal() { authModal.classList.add("active"); }
+    function closeAuthModal() { authModal.classList.remove("active"); }
+    function switchAuthTab(tab) {
+        if (tab === 'login') {
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+            document.getElementById("loginTabBtn").classList.add("active");
+            document.getElementById("registerTabBtn").classList.remove("active");
+        } else {
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+            document.getElementById("loginTabBtn").classList.remove("active");
+            document.getElementById("registerTabBtn").classList.add("active");
+        }
+    }
+
+    function openProfileModal() {
+        if (!currentUser) { showToast("請先登入", true); return; }
+        const av = currentUser.avatar;
+        if (av && (av.startsWith("http") || av.startsWith("data:image"))) {
+            profileAvatarPreview.innerHTML = `<img src="${av}" style="width:100%; height:100%; object-fit:cover;">`;
+        } else {
+            profileAvatarPreview.innerHTML = `<div style="font-size:2rem;">${av || "🏆"}</div>`;
+        }
+        profileDistrictSelect.value = currentUser.district || "觀塘區";
+        profileModal.classList.add("active");
+    }
+    function closeProfileModal() { profileModal.classList.remove("active"); }
+    async function saveProfile() {
+        const newAvatar = selectedProfileAvatar || currentUser.avatar;
+        const newDistrict = profileDistrictSelect.value;
+        await updatePlayerProfile(newAvatar, newDistrict);
+        closeProfileModal();
+    }
+
+    // 頭像選擇器
+    function setupRegisterEmoji() {
+        const emojis = ["🦅","🐉","🦁","🐺","🦄","🔥","🦈","⚔️","🛡️","🌟","🌊","⚡","❄️","🌙","🎯"];
+        const grid = document.getElementById("regEmojiGrid");
+        grid.innerHTML = emojis.map(e => `<div class="emoji-option" data-emoji="${e}">${e}</div>`).join("");
+        document.querySelectorAll("#regEmojiGrid .emoji-option").forEach(el => {
+            el.addEventListener("click", () => {
+                selectedRegAvatar = el.getAttribute("data-emoji");
+                document.getElementById("regAvatarPreview").innerHTML = `<div style="font-size:1.8rem;">${selectedRegAvatar}</div>`;
+            });
+        });
+        const upload = document.getElementById("regAvatarUpload");
+        upload.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    selectedRegAvatar = ev.target.result;
+                    document.getElementById("regAvatarPreview").innerHTML = `<img src="${selectedRegAvatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+
+    function setupProfileEmoji() {
+        const emojis = ["🦅","🐉","🦁","🐺","🦄","🔥","🦈","⚔️","🛡️","🌟","🌊","⚡","❄️","🌙","🎯"];
+        const grid = document.getElementById("profileEmojiGrid");
+        grid.innerHTML = emojis.map(e => `<div class="emoji-option" data-emoji="${e}">${e}</div>`).join("");
+        document.querySelectorAll("#profileEmojiGrid .emoji-option").forEach(el => {
+            el.addEventListener("click", () => {
+                selectedProfileAvatar = el.getAttribute("data-emoji");
+                profileAvatarPreview.innerHTML = `<div style="font-size:2rem;">${selectedProfileAvatar}</div>`;
+            });
+        });
+        const upload = document.getElementById("profileAvatarUpload");
+        upload.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    selectedProfileAvatar = ev.target.result;
+                    profileAvatarPreview.innerHTML = `<img src="${selectedProfileAvatar}" style="width:100%; height:100%; object-fit:cover;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+
+    function renderRooms() {
+        const mockRooms = [
+            { id:"rm1", host:"星穹天馬", location:"維園草地", time:"今晚 8:00", players:2, max:4 },
+            { id:"rm2", host:"銀翼龍騎", location:"麥花臣球場", time:"明日 15:00", players:1, max:4 }
+        ];
+        if (!roomList) return;
+        if (mockRooms.length === 0) { roomList.innerHTML = "<div style='text-align:center;padding:20px'>暫無約戰</div>"; return; }
+        let html = "";
+        mockRooms.forEach(r => {
+            html += `<div class="room-card"><div class="room-title"><span><i class="fas fa-gamepad"></i> ${r.host} 的房間</span><button class="join-btn" data-id="${r.id}">加入</button></div>
+            <div class="room-detail"><i class="fas fa-map-marker-alt"></i> ${r.location} &nbsp; <i class="far fa-clock"></i> ${r.time}</div>
+            <div class="room-detail"><i class="fas fa-user-friends"></i> ${r.players}/${r.max} 人</div></div>`;
+        });
+        roomList.innerHTML = html;
+        document.querySelectorAll(".join-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => { e.stopPropagation(); if (!currentUser) showToast("請先登入", true); else alert("預約功能開發中"); });
+        });
+    }
+
+    function closeMenu() {
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+        if (sideMenu) sideMenu.classList.remove("open");
+        if (overlay) overlay.classList.remove("active");
+    }
+
+    // DOMContentLoaded 綁定事件
     document.addEventListener('DOMContentLoaded', () => {
-        // 取得所有元素 (與之前相同)
         rankTbody = document.getElementById("rankTbody");
         searchInput = document.getElementById("searchInput");
         searchBtn = document.getElementById("searchBtn");
@@ -1093,7 +1223,6 @@
         createRoomBtn = document.getElementById("createRoomBtn");
         roomList = document.getElementById("roomList");
 
-        // 綁定事件
         searchBtn.addEventListener("click", () => searchPlayers(searchInput.value));
         clearBtn.addEventListener("click", () => { searchInput.value = ""; searchPlayers(""); });
         searchInput.addEventListener("keypress", (e) => { if (e.key === "Enter") searchPlayers(searchInput.value); });
@@ -1105,7 +1234,6 @@
         createRoomBtn.addEventListener("click", () => { if (!currentUser) showToast("請先登入", true); else alert("開設房間功能開發中"); });
         renderRooms();
 
-        // Modal 控制
         document.getElementById("closeAuthBtn").addEventListener("click", closeAuthModal);
         authModal.addEventListener("click", (e) => { if (e.target === authModal) closeAuthModal(); });
         document.getElementById("loginTabBtn").addEventListener("click", () => switchAuthTab('login'));
@@ -1127,28 +1255,12 @@
         menuBtn.addEventListener("click", () => { sideMenu.classList.add("open"); overlay.classList.add("active"); });
         overlay.addEventListener("click", () => { sideMenu.classList.remove("open"); overlay.classList.remove("active"); });
 
-        // 頭像選擇器初始化 (函數內容與之前相同)
         setupRegisterEmoji();
         setupProfileEmoji();
     });
 
-    // 以下函數與上一版基本相同，但確保 Toast 整合
-    function showPlayerPopup(player) { /* 同前 */ }
-    function renderRanking() { /* 同前 */ }
-    function renderPagination() { /* 同前 */ }
-    function searchPlayers(term) { /* 同前 */ }
-    function openAuthModal() { authModal.classList.add("active"); }
-    function closeAuthModal() { authModal.classList.remove("active"); }
-    function switchAuthTab(tab) { /* 同前 */ }
-    function openProfileModal() { /* 同前 */ }
-    function closeProfileModal() { profileModal.classList.remove("active"); }
-    async function saveProfile() { /* 同前 */ }
-    function setupRegisterEmoji() { /* 同前 */ }
-    function setupProfileEmoji() { /* 同前 */ }
-    function renderRooms() { /* 同前 */ }
-    function closeMenu() { /* 同前 */ }
-    // 為避免遺漏，請你將上一版中對應的函數實作貼在此處，或直接複製完整程式碼。
-    // 由於長度限制，此處提供最關鍵的修正點，實際使用時請將我上一則回應中的完整 <script> 區塊替換為上述改良版。
+    // 初次載入排行榜 (若未登入也會顯示)
+    loadRankings();
 </script>
 </body>
 </html>
