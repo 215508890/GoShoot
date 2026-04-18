@@ -1,1 +1,1 @@
-# GoShoot
+go run main.go
