@@ -37,7 +37,6 @@
             position: relative;
             z-index: 2;
         }
-        /* 頂欄 */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -80,7 +79,6 @@
             background: #2c6280;
             display: block;
         }
-        /* 側邊選單 */
         .side-menu {
             position: fixed;
             top: 0;
@@ -152,7 +150,6 @@
             opacity: 1;
             visibility: visible;
         }
-        /* 搜尋列 */
         .search-bar {
             display: flex;
             flex-wrap: wrap;
@@ -177,27 +174,18 @@
             cursor: pointer;
             white-space: nowrap;
         }
-        .search-btn {
-            background: #2c6e9e;
-            color: white;
-        }
-        .clear-btn {
-            background: #eef2f8;
-            color: #2c5a7a;
-            border: 1px solid #cbdde9;
-        }
+        .search-btn { background: #2c6e9e; color: white; }
+        .clear-btn { background: #eef2f8; color: #2c5a7a; border: 1px solid #cbdde9; }
         .search-result-info {
             font-size: 0.7rem;
             color: #5a7e9c;
             margin: -8px 0 12px 8px;
         }
-        /* 主內容直排 */
         .dashboard {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        /* 排名榜 */
         .rank-panel {
             background: #ffffffdd;
             backdrop-filter: blur(4px);
@@ -304,7 +292,6 @@
             color: #6f8daa;
             white-space: nowrap;
         }
-        /* 約戰大廳 & 資訊 */
         .battle-lobby, .info-panel {
             background: #ffffffdd;
             backdrop-filter: blur(4px);
@@ -416,7 +403,7 @@
             color: #6c8eaa;
             border-top: 1px solid #d4e2f0;
         }
-        /* Modal 樣式 */
+        /* Modal 樣式 - 手機友善，可滾動 */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -432,6 +419,7 @@
             opacity: 0;
             visibility: hidden;
             transition: 0.2s;
+            padding: 16px;
         }
         .modal-overlay.active {
             opacity: 1;
@@ -439,10 +427,12 @@
         }
         .modal-container {
             background: white;
-            width: 88%;
+            width: 100%;
             max-width: 400px;
-            border-radius: 32px;
-            overflow: hidden;
+            max-height: 85vh;
+            border-radius: 28px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-header {
             padding: 16px 20px;
@@ -451,12 +441,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
         }
         .modal-close {
             font-size: 1.6rem;
             background: none;
             border: none;
             cursor: pointer;
+            padding: 0 8px;
         }
         .modal-body {
             padding: 20px;
@@ -500,9 +495,11 @@
             grid-template-columns: repeat(6, 1fr);
             gap: 8px;
             margin-bottom: 12px;
+            max-height: 150px;
+            overflow-y: auto;
         }
         .emoji-option {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             text-align: center;
             cursor: pointer;
             padding: 6px;
@@ -520,7 +517,6 @@
             justify-content: center;
             overflow: hidden;
         }
-        /* Popup 彈窗 */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -536,6 +532,7 @@
             opacity: 0;
             visibility: hidden;
             transition: 0.2s;
+            padding: 16px;
         }
         .popup-overlay.active {
             opacity: 1;
@@ -543,10 +540,12 @@
         }
         .popup-container {
             background: white;
-            width: 88%;
+            width: 100%;
             max-width: 380px;
-            border-radius: 32px;
-            overflow: hidden;
+            max-height: 85vh;
+            border-radius: 28px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .popup-header {
             padding: 16px 20px;
@@ -554,6 +553,10 @@
             border-bottom: 2px solid #2c6e9e;
             display: flex;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
         }
         .popup-close {
             font-size: 1.6rem;
@@ -621,11 +624,52 @@
         button, .join-btn, .page-btn {
             touch-action: manipulation;
         }
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 6px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2a3a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            text-align: center;
+            max-width: 80%;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        /* 登入後訊息 */
+        .verify-badge {
+            background: #f39c12;
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- 頂欄 -->
     <div class="navbar">
         <div class="logo-area">
             <h1><i class="fas fa-bezier-curve"></i> 天馬陀螺戰榜</h1>
@@ -634,7 +678,6 @@
         <button class="menu-btn" id="menuToggleBtn"><span></span><span></span><span></span></button>
     </div>
 
-    <!-- 側邊選單 -->
     <div class="side-menu" id="sideMenu">
         <div class="menu-header">
             <div class="user-icon-large" id="sideUserAvatar">🏆</div>
@@ -650,7 +693,6 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
-    <!-- 搜尋列 -->
     <div class="search-bar">
         <input type="text" class="search-input" id="searchInput" placeholder="玩家名稱 或 數字ID">
         <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> 搜尋</button>
@@ -659,7 +701,6 @@
     <div id="searchResultInfo" class="search-result-info"></div>
 
     <div class="dashboard">
-        <!-- 排名榜 -->
         <div class="rank-panel">
             <div class="panel-header">
                 <h2><i class="fas fa-trophy"></i> 戰士排行</h2>
@@ -674,14 +715,12 @@
             <div class="pagination" id="paginationControls"></div>
         </div>
 
-        <!-- 約戰大廳 -->
         <div class="battle-lobby">
             <div class="lobby-header"><i class="fas fa-users"></i> 約戰大廳</div>
             <button class="create-room-btn" id="createRoomBtn"><i class="fas fa-plus-circle"></i> 開設陀螺房間</button>
             <div class="room-list" id="roomList">載入中...</div>
         </div>
 
-        <!-- 規則資訊 -->
         <div class="info-panel">
             <div class="info-block">
                 <h3><i class="fas fa-dice-d6"></i> 積分規則</h3>
@@ -706,7 +745,6 @@
     <footer><i class="fas fa-bezier-curve"></i> 香港爆旋陀螺協會 · 公平競技</footer>
 </div>
 
-<!-- 玩家詳細 Popup -->
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup-container">
         <div class="popup-header"><h3 id="popupName">玩家</h3><button class="popup-close" id="popupCloseBtn">&times;</button></div>
@@ -714,7 +752,6 @@
     </div>
 </div>
 
-<!-- 登入/註冊 Modal -->
 <div class="modal-overlay" id="authModal">
     <div class="modal-container">
         <div class="modal-header"><h3>帳號</h3><button class="modal-close" id="closeAuthBtn">&times;</button></div>
@@ -727,29 +764,42 @@
                 <div class="form-group"><label>玩家ID (5位數字)</label><input type="text" id="loginId" placeholder="例如 12345" maxlength="5"></div>
                 <div class="form-group"><label>密碼</label><input type="password" id="loginPassword" placeholder="密碼"></div>
                 <button id="doLoginBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">登入</button>
-                <div style="margin-top:12px; text-align:center;"><button id="googleLoginBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> Google 登入</button></div>
                 <div class="login-hint" style="font-size:0.7rem; text-align:center; margin-top:12px;">未註冊？請切換至「註冊」建立新帳號</div>
             </div>
             <div id="registerForm" style="display:none;">
                 <div class="form-group"><label>戰士名稱</label><input type="text" id="regName" placeholder="例如 天馬戰士"></div>
                 <div class="form-group"><label>活躍區域</label><select id="regDistrict"><option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option><option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option><option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option><option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option><option>灣仔區</option><option>中西區</option></select></div>
-                <div class="form-group"><label>密碼</label><input type="password" id="regPassword" placeholder="密碼"></div>
-                <div class="form-group"><label>頭像 (Emoji 或 上傳)</label><div class="emoji-grid" id="regEmojiGrid"></div><label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label><input type="file" id="regAvatarUpload" accept="image/*" style="display:none;"><div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div></div>
-                <button id="doRegisterBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">註冊新帳號</button>
-                <div style="margin-top:12px; text-align:center;"><button id="regGoogleBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> 使用 Google 註冊</button></div>
+                <div class="form-group"><label>密碼</label><input type="password" id="regPassword" placeholder="密碼 (至少6位)"></div>
+                <div class="form-group"><label>頭像 (Emoji 或 上傳)</label>
+                    <div class="emoji-grid" id="regEmojiGrid"></div>
+                    <label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                    <input type="file" id="regAvatarUpload" accept="image/*" style="display:none;">
+                    <div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div>
+                </div>
+                <button id="doRegisterBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">註冊</button>
+                <div class="login-hint" style="font-size:0.7rem; text-align:center; margin-top:12px;">註冊後請到電郵信箱點擊驗證連結</div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 編輯檔案 Modal -->
 <div class="modal-overlay" id="profileModal">
     <div class="modal-container">
         <div class="modal-header"><h3>編輯我的檔案</h3><button class="modal-close" id="closeProfileBtn">&times;</button></div>
         <div class="modal-body">
             <div class="emoji-grid" id="profileEmojiGrid"></div>
-            <div class="upload-area"><label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label><input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;"><div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div></div>
-            <select id="profileDistrict" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;"><option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option><option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option><option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option><option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option><option>灣仔區</option><option>中西區</option></select>
+            <div class="upload-area">
+                <label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                <input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;">
+                <div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div>
+            </div>
+            <select id="profileDistrict" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;">
+                <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
+                <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
+                <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
+                <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
+                <option>灣仔區</option><option>中西區</option>
+            </select>
             <button id="saveProfileBtn" style="width:100%; margin-top:16px; background:#1e5a88; color:white; padding:10px; border:none; border-radius:40px;">儲存變更</button>
         </div>
     </div>
@@ -759,7 +809,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, doc, setDoc, getDoc, getDocs, query, orderBy, limit, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -775,7 +825,6 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const provider = new GoogleAuthProvider();
 
     // ---------- 全域變數 ----------
     let currentUser = null;
@@ -787,17 +836,16 @@
     let selectedRegAvatar = "🏆";
     let selectedProfileAvatar = null;
 
-    // DOM 元素 (延遲初始化)
+    // DOM 元素
     let rankTbody, searchInput, searchBtn, clearBtn, paginationControls, paginationInfo;
     let totalPlayersSpan, highestStreakSpan, weeklyChampionSpan;
     let sideUserAvatar, sideUserName, loginMenuItem;
-    let authModal, loginForm, registerForm, loginIdInput, loginPasswordInput, doLoginBtn, googleLoginBtn;
-    let regNameInput, regDistrictSelect, regPasswordInput, doRegisterBtn, regGoogleBtn;
+    let authModal, loginForm, registerForm, loginIdInput, loginPasswordInput, doLoginBtn;
+    let regNameInput, regDistrictSelect, regPasswordInput, doRegisterBtn;
     let profileModal, profileAvatarPreview, profileDistrictSelect, saveProfileBtn;
     let popupOverlay, popupName, popupBody, popupCloseBtn;
     let createRoomBtn, roomList;
 
-    // 輔助函數
     function showToast(msg, isError = false) {
         const toast = document.getElementById("toastMessage");
         if (!toast) return;
@@ -819,7 +867,6 @@
         }
     }
 
-    // ---------- Firebase 玩家資料同步 ----------
     async function getOrCreatePlayer(firebaseUser) {
         const playerRef = doc(db, "players", firebaseUser.uid);
         const docSnap = await getDoc(playerRef);
@@ -831,14 +878,15 @@
             const newPlayer = {
                 player_number: numericId,
                 name: displayName,
-                avatar: firebaseUser.photoURL || "🏆",
+                avatar: "🏆",
                 district: "觀塘區",
                 score: 1000,
                 streak: 0,
                 wins: 0,
                 losses: 0,
                 ties: 0,
-                email: firebaseUser.email
+                email: firebaseUser.email,
+                emailVerified: firebaseUser.emailVerified
             };
             await setDoc(playerRef, newPlayer);
             return { id: firebaseUser.uid, ...newPlayer };
@@ -894,25 +942,10 @@
             if (error.code === 'auth/user-not-found') msg = "找不到此玩家ID";
             else if (error.code === 'auth/wrong-password') msg = "密碼錯誤";
             else if (error.code === 'auth/invalid-email') msg = "ID格式錯誤";
+            else if (error.code === 'auth/email-not-verified') msg = "請先驗證電郵";
             showToast(msg, true);
         } finally {
             setButtonLoading(doLoginBtn, false);
-        }
-    }
-
-    async function googleLogin() {
-        setButtonLoading(googleLoginBtn, true);
-        try {
-            const result = await signInWithPopup(auth, provider);
-            closeAuthModal();
-            showToast(`歡迎，${result.user.displayName || "玩家"}`);
-        } catch (error) {
-            let msg = "Google 登入失敗";
-            if (error.code === 'auth/popup-closed-by-user') msg = "您關閉了彈窗，請重新嘗試";
-            else if (error.code === 'auth/account-exists-with-different-credential') msg = "此電子郵件已使用其他方式註冊";
-            showToast(msg, true);
-        } finally {
-            setButtonLoading(googleLoginBtn, false);
         }
     }
 
@@ -928,6 +961,10 @@
         try {
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
             const uid = userCred.user.uid;
+            
+            // 發送驗證電郵
+            await sendEmailVerification(userCred.user);
+            
             const newPlayer = {
                 player_number: numericId,
                 name: name,
@@ -938,10 +975,11 @@
                 wins: 0,
                 losses: 0,
                 ties: 0,
-                email: email
+                email: email,
+                emailVerified: false
             };
             await setDoc(doc(db, "players", uid), newPlayer);
-            showToast(`註冊成功！您的玩家ID是 ${numericId}，請用此ID登入`);
+            showToast(`註冊成功！驗證電郵已發送至 ${email}，請點擊驗證後登入`);
             switchAuthTab('login');
             regNameInput.value = "";
             regPasswordInput.value = "";
@@ -954,10 +992,6 @@
         }
     }
 
-    async function registerWithGoogle() {
-        await googleLogin();
-    }
-
     function updateSidebarUI() {
         if (currentUser) {
             const av = currentUser.avatar;
@@ -966,19 +1000,28 @@
             } else {
                 sideUserAvatar.innerHTML = av || "🏆";
             }
-            sideUserName.innerText = currentUser.name;
+            const verifiedBadge = currentUser.emailVerified ? '<span class="verify-badge">已驗證</span>' : '<span class="verify-badge" style="background:#e74c3c;">未驗證</span>';
+            sideUserName.innerHTML = currentUser.name + verifiedBadge;
             loginMenuItem.innerHTML = '<i class="fas fa-sign-out-alt"></i> 登出';
         } else {
             sideUserAvatar.innerHTML = "🏆";
-            sideUserName.innerText = "訪客";
+            sideUserName.innerHTML = "訪客";
             loginMenuItem.innerHTML = '<i class="fas fa-sign-in-alt"></i> 登入 / 註冊';
         }
     }
 
-    // 監聽 Auth 狀態
     onAuthStateChanged(auth, async (user) => {
         if (user) {
+            // 檢查 email 是否已驗證
+            if (!user.emailVerified) {
+                showToast("請先到電郵信箱驗證帳號", true);
+                await signOut(auth);
+                currentUser = null;
+                updateSidebarUI();
+                return;
+            }
             currentUser = await getOrCreatePlayer(user);
+            currentUser.emailVerified = user.emailVerified;
             updateSidebarUI();
             if (allPlayers.length === 0) await loadRankings();
             else loadRankings();
@@ -990,7 +1033,6 @@
         }
     });
 
-    // 排行榜渲染函數
     function renderRanking() {
         if (!rankTbody) return;
         const start = (currentPage - 1) * itemsPerPage;
@@ -1075,7 +1117,6 @@
 
     function closePopup() { popupOverlay.classList.remove("active"); }
 
-    // Modal 控制
     function openAuthModal() { authModal.classList.add("active"); }
     function closeAuthModal() { authModal.classList.remove("active"); }
     function switchAuthTab(tab) {
@@ -1111,7 +1152,6 @@
         closeProfileModal();
     }
 
-    // 頭像選擇器
     function setupRegisterEmoji() {
         const emojis = ["🦅","🐉","🦁","🐺","🦄","🔥","🦈","⚔️","🛡️","🌟","🌊","⚡","❄️","🌙","🎯"];
         const grid = document.getElementById("regEmojiGrid");
@@ -1186,7 +1226,6 @@
         if (overlay) overlay.classList.remove("active");
     }
 
-    // DOMContentLoaded 綁定事件
     document.addEventListener('DOMContentLoaded', () => {
         rankTbody = document.getElementById("rankTbody");
         searchInput = document.getElementById("searchInput");
@@ -1206,12 +1245,10 @@
         loginIdInput = document.getElementById("loginId");
         loginPasswordInput = document.getElementById("loginPassword");
         doLoginBtn = document.getElementById("doLoginBtn");
-        googleLoginBtn = document.getElementById("googleLoginBtn");
         regNameInput = document.getElementById("regName");
         regDistrictSelect = document.getElementById("regDistrict");
         regPasswordInput = document.getElementById("regPassword");
         doRegisterBtn = document.getElementById("doRegisterBtn");
-        regGoogleBtn = document.getElementById("regGoogleBtn");
         profileModal = document.getElementById("profileModal");
         profileAvatarPreview = document.getElementById("profileAvatarPreview");
         profileDistrictSelect = document.getElementById("profileDistrict");
@@ -1239,9 +1276,7 @@
         document.getElementById("loginTabBtn").addEventListener("click", () => switchAuthTab('login'));
         document.getElementById("registerTabBtn").addEventListener("click", () => switchAuthTab('register'));
         doLoginBtn.addEventListener("click", doLogin);
-        googleLoginBtn.addEventListener("click", googleLogin);
         doRegisterBtn.addEventListener("click", doRegister);
-        if (regGoogleBtn) regGoogleBtn.addEventListener("click", registerWithGoogle);
 
         document.getElementById("closeProfileBtn").addEventListener("click", closeProfileModal);
         profileModal.addEventListener("click", (e) => { if (e.target === profileModal) closeProfileModal(); });
@@ -1259,7 +1294,6 @@
         setupProfileEmoji();
     });
 
-    // 初次載入排行榜 (若未登入也會顯示)
     loadRankings();
 </script>
 </body>
