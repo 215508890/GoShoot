@@ -625,11 +625,175 @@
 </head>
 <body>
 <div class="container">
-    <!-- 頂欄、側邊選單、搜尋列、排名榜、約戰大廳等 HTML 結構與上一版完全相同 -->
-    <!-- 為了節省篇幅，此處省略重複的 HTML，請直接從我上一次給你的完整 HTML 中複製 body 內所有內容 -->
-    <!-- 重要：確保所有 id 如 rankTbody, sideUserAvatar, loginMenuItem, authModal, profileModal 等都存在 -->
+    <!-- 頂欄 -->
+    <div class="navbar">
+        <div class="logo-area">
+            <h1><i class="fas fa-bezier-curve"></i> 天馬陀螺戰榜</h1>
+            <p>香港街頭對戰 · 即時排名</p>
+        </div>
+        <button class="menu-btn" id="menuToggleBtn"><span></span><span></span><span></span></button>
+    </div>
+
+    <!-- 側邊選單 -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <div class="user-icon-large" id="sideUserAvatar">🏆</div>
+            <div id="sideUserName">訪客</div>
+        </div>
+        <ul class="menu-items">
+            <li><a id="loginMenuItem"><i class="fas fa-sign-in-alt"></i> 登入 / 註冊</a></li>
+            <li><a id="myProfileMenuItem"><i class="fas fa-id-card"></i> 我的檔案</a></li>
+            <li><a id="battleHistoryMenuItem"><i class="fas fa-history"></i> 對戰紀錄</a></li>
+            <li><a id="scanBattleMenuItem"><i class="fas fa-qrcode"></i> 掃碼對戰</a></li>
+            <li><a id="rulesMenuItem"><i class="fas fa-info-circle"></i> 排行榜說明</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 搜尋列 -->
+    <div class="search-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="玩家名稱 或 數字ID">
+        <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> 搜尋</button>
+        <button class="clear-btn" id="clearSearchBtn"><i class="fas fa-times"></i> 清除</button>
+    </div>
+    <div id="searchResultInfo" class="search-result-info"></div>
+
+    <div class="dashboard">
+        <!-- 排名榜 -->
+        <div class="rank-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-trophy"></i> 戰士排行</h2>
+                <div class="pagination-info" id="paginationInfo">-</div>
+            </div>
+            <div class="table-wrapper">
+                <table class="rank-table" id="rankTable">
+                    <thead>
+                        <tr><th>排名</th><th>戰士</th><th>積分</th><th>連勝</th><th>戰績</th></tr>
+                    </thead>
+                    <tbody id="rankTbody"><tr><td colspan="5">載入中...</td></tr></tbody>
+                </table>
+            </div>
+            <div class="pagination" id="paginationControls"></div>
+        </div>
+
+        <!-- 約戰大廳 -->
+        <div class="battle-lobby">
+            <div class="lobby-header"><i class="fas fa-users"></i> 約戰大廳</div>
+            <button class="create-room-btn" id="createRoomBtn"><i class="fas fa-plus-circle"></i> 開設陀螺房間</button>
+            <div class="room-list" id="roomList">載入中...</div>
+        </div>
+
+        <!-- 規則資訊 -->
+        <div class="info-panel">
+            <div class="info-block">
+                <h3><i class="fas fa-dice-d6"></i> 積分規則</h3>
+                <ul class="rule-list">
+                    <li><i class="fas fa-star"></i> 初始1000分</li>
+                    <li><i class="fas fa-bolt"></i> 勝者奪敗者10% (上限150)</li>
+                    <li><i class="fas fa-shield-alt"></i> 新手保護 ≤500分扣5%</li>
+                    <li><i class="fas fa-clock"></i> 同一對手24hr一次</li>
+                    <li><i class="fas fa-fire"></i> 連勝加成: 3連勝+2%</li>
+                </ul>
+                <div class="stat-badge">
+                    <div class="stat-number" id="totalPlayersCount">0</div>
+                    <div>活躍鬥士</div>
+                    <div class="double-stats">
+                        <div class="stat-item"><div class="stat-number" id="highestStreak">0</div><div>最高連勝</div></div>
+                        <div class="stat-item"><div class="stat-number" id="weeklyChampion">-</div><div>陀螺王</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><i class="fas fa-bezier-curve"></i> 香港爆旋陀螺協會 · 公平競技</footer>
 </div>
 
+<!-- 玩家詳細 Popup -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-container">
+        <div class="popup-header"><h3 id="popupName">玩家</h3><button class="popup-close" id="popupCloseBtn">&times;</button></div>
+        <div class="popup-body" id="popupBody"></div>
+    </div>
+</div>
+
+<!-- 登入/註冊 Modal -->
+<div class="modal-overlay" id="authModal">
+    <div class="modal-container">
+        <div class="modal-header"><h3>帳號</h3><button class="modal-close" id="closeAuthBtn">&times;</button></div>
+        <div class="modal-body">
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="loginTabBtn">登入</button>
+                <button class="tab-btn" id="registerTabBtn">註冊</button>
+            </div>
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>玩家ID (5位數字)</label>
+                    <input type="text" id="loginId" placeholder="例如 12345" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label>密碼</label>
+                    <input type="password" id="loginPassword" placeholder="密碼">
+                </div>
+                <button id="doLoginBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">登入</button>
+                <div style="margin-top:12px; text-align:center;">
+                    <button id="googleLoginBtn" style="background:#4285F4; color:white; border:none; border-radius:40px; padding:8px 16px;"><i class="fab fa-google"></i> Google 登入</button>
+                </div>
+                <div class="login-hint" style="font-size:0.7rem; text-align:center; margin-top:12px;">未註冊？請切換至「註冊」建立新帳號</div>
+            </div>
+            <div id="registerForm" style="display:none;">
+                <div class="form-group">
+                    <label>戰士名稱</label>
+                    <input type="text" id="regName" placeholder="例如 天馬戰士">
+                </div>
+                <div class="form-group">
+                    <label>活躍區域</label>
+                    <select id="regDistrict">
+                        <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
+                        <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
+                        <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
+                        <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
+                        <option>灣仔區</option><option>中西區</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>密碼</label>
+                    <input type="password" id="regPassword" placeholder="密碼">
+                </div>
+                <div class="form-group">
+                    <label>頭像 (Emoji 或 上傳)</label>
+                    <div class="emoji-grid" id="regEmojiGrid"></div>
+                    <label for="regAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                    <input type="file" id="regAvatarUpload" accept="image/*" style="display:none;">
+                    <div id="regAvatarPreview" style="margin-top:8px; width:50px; height:50px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏆</div>
+                </div>
+                <button id="doRegisterBtn" style="width:100%; background:#2c6e9e; color:white; padding:10px; border:none; border-radius:40px;">註冊新帳號</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 編輯檔案 Modal -->
+<div class="modal-overlay" id="profileModal">
+    <div class="modal-container">
+        <div class="modal-header"><h3>編輯我的檔案</h3><button class="modal-close" id="closeProfileBtn">&times;</button></div>
+        <div class="modal-body">
+            <div class="emoji-grid" id="profileEmojiGrid"></div>
+            <div class="upload-area">
+                <label for="profileAvatarUpload" style="background:#eef2f8; display:inline-block; padding:6px 12px; border-radius:40px; cursor:pointer;">上傳圖片</label>
+                <input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;">
+                <div id="profileAvatarPreview" style="margin:10px auto; width:60px; height:60px; border-radius:50%; background:#eef2f8; display:flex; align-items:center; justify-content:center; overflow:hidden;"></div>
+            </div>
+            <select id="profileDistrict" style="width:100%; padding:10px; margin-top:12px; border-radius:40px;">
+                <option>觀塘區</option><option>油尖旺區</option><option>深水埗區</option><option>九龍城區</option>
+                <option>黃大仙區</option><option>葵青區</option><option>荃灣區</option><option>屯門區</option>
+                <option>元朗區</option><option>北區</option><option>大埔區</option><option>沙田區</option>
+                <option>西貢區</option><option>離島區</option><option>南區</option><option>東區</option>
+                <option>灣仔區</option><option>中西區</option>
+            </select>
+            <button id="saveProfileBtn" style="width:100%; margin-top:16px; background:#1e5a88; color:white; padding:10px; border:none; border-radius:40px;">儲存變更</button>
+        </div>
+    </div>
+</div>
 <!-- 簡易 Toast 提示 -->
 <div id="toastMessage" class="toast"></div>
 
